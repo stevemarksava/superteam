@@ -196,7 +196,18 @@
       "Bash(git init *)",
       "Bash(Get-ChildItem agents/)",
       "Bash(Select-Object Name)",
-      "Bash(Get-ChildItem squad/)"
+      "Bash(Get-ChildItem squad/)",
+      "Bash(git fetch *)",
+      "Bash(exist vscode-extension *)",
+      "Bash(mkdir vscode-extension\\\\src)",
+      "Bash(npm install *)",
+      "Bash(cd /mnt/c/Users/s.marks/.claude/vscode-extension && npm install)",
+      "Read(//mnt/c/Users/s.marks/.claude/**)",
+      "Bash(Get-Location)",
+      "Bash(Test-Path \"node_modules\\\\gray-matter\\\\index.d.ts\")",
+      "Bash(awk '{print $9}')",
+      "Bash(Remove-Item \"C:\\\\Users\\\\s.marks\\\\.claude\\\\.git\\\\index.lock\" -Force)",
+      "PowerShell($retries = 10; $success = $false; for \\($i = 0; $i -lt $retries; $i++\\) { Start-Sleep -Seconds 3; $lock = Test-Path \"C:\\\\Users\\\\s.marks\\\\.claude\\\\.git\\\\index.lock\"; if \\(-not $lock\\) { cd \"C:\\\\Users\\\\s.marks\\\\.claude\"; git add .; if \\($LASTEXITCODE -eq 0\\) { $success = $true; Write-Output \"Staged successfully\"; break } } else { Write-Output \"Lock still held, attempt $\\($i+1\\)...\" } }; if \\(-not $success\\) { Write-Output \"Could not acquire lock after $retries attempts\" })"
     ],
     "defaultMode": "bypassPermissions",
     "additionalDirectories": [
@@ -204,7 +215,8 @@
       "C:\\Users\\s.marks\\Documents\\GitHub\\FDE_PoC-on-the-Fly_Tooling\\.claude\\agents",
       "c:\\Users\\s.marks\\.claude",
       "C:\\Users\\s.marks\\Documents\\GitHub\\FDE_PoC-on-the-Fly_Tooling\\.claude\\skills",
-      "C:\\Users\\s.marks\\.claude\\squad\\agents\\athanasios\\knowledge\\recon"
+      "C:\\Users\\s.marks\\.claude\\squad\\agents\\athanasios\\knowledge\\recon",
+      "C:\\Users\\s.marks\\.claude\\.git"
     ]
   },
   "effortLevel": "high",
