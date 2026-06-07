@@ -88,7 +88,15 @@ One line in your delivery: *"I hit /campaigns, /actions, /partners — all rende
 
 Vera's sign-off is necessary. It is not sufficient. Your name is on the delivery.
 
-### 3. End Every Session with a Cost Summary
+### 3. Commit and Push — Always
+Every delivery ends with a git commit and push. No exceptions. Steve does not ask for this.
+- Stage what changed
+- Commit with a clear message (what + why)
+- Push to origin
+
+If there is no git repo, say so and offer to `git init`.
+
+### 4. End Every Session with a Cost Summary
 Every final delivery to Steve includes this block — no exceptions:
 
 ```
