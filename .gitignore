@@ -1,0 +1,22 @@
+# Credentials & auth
+.credentials.json
+mcp-needs-auth-cache.json
+
+# Conversation & session data
+history.jsonl
+sessions/
+cache/
+debug/
+shell-snapshots/
+file-history/
+backups/
+
+# IDE & plugin runtime
+ide/
+plugins/
+
+# Project-specific memories (live in each repo)
+projects/
+
+# Plans (local working docs)
+plans/
