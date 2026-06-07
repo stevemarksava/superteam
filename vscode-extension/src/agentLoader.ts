@@ -16,21 +16,16 @@ export interface Agent {
  */
 export function loadAgents(outputChannel: vscode.OutputChannel): Map<string, Agent> {
   const agents = new Map<string, Agent>();
-  const coreAgents = [
+  const allAgents = [
     'superman', 'eric', 'vera', 'bob', 'paulien', 'marlo',
-    'athanasios', 'kryptonite', 'kevin', 'coach', 'g', 'georgiana'
+    'athanasios', 'kryptonite', 'kevin', 'coach', 'g', 'georgiana',
+    'nexus'
   ];
-
-  const specialistAgents = ['nexus'];
 
   const claudeDir = path.join(os.homedir(), '.claude');
-  const coreDir = path.join(claudeDir, 'agents');
-  const specialistsDir = path.join(claudeDir, 'squad', 'specialists');
+  const agentsDir = path.join(claudeDir, 'agents');
 
-  const toLoad: Array<{ name: string; dir: string }> = [
-    ...coreAgents.map(name => ({ name, dir: coreDir })),
-    ...specialistAgents.map(name => ({ name, dir: specialistsDir }))
-  ];
+  const toLoad: Array<{ name: string; dir: string }> = allAgents.map(name => ({ name, dir: agentsDir }));
 
   for (const { name, dir } of toLoad) {
     try {
