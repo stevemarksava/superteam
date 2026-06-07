@@ -35,7 +35,7 @@ Reload Claude Code. Superman answers.
 
 ### Specialist Tier
 
-Outside the core 12 — activated per-project when needed:
+Outside the core 12 — activated per-project when needed. Specialists live in `agents/` so they work in both Claude Code and Copilot Chat.
 
 | Agent | Role |
 |-------|------|
@@ -61,10 +61,10 @@ Nexus — what's the right Azure service for this?
 
 Copy `.github/copilot-instructions.md` into any repo to load squad context into Copilot Chat.
 
-Or install the VS Code extension for `@superman`, `@eric`, `@vera` etc. as real Copilot Chat participants:
+Or install the VS Code extension for `@superman`, `@eric`, `@vera`, `@nexus` etc. as real Copilot Chat participants:
 
 ```powershell
-code --install-extension "vscode-extension/superteam-copilot-participants-0.1.0.vsix"
+code --install-extension "vscode-extension/superteam-copilot-participants-0.2.0.vsix"
 ```
 
 ---
@@ -84,7 +84,7 @@ Then run `squad/onboarding/NEW_PROJECT.md` with Superman before any agent touche
 ## What's in This Repo
 
 ```
-agents/                  Core squad agent definitions (12 agents)
+agents/                  All agent definitions — 12 core + specialists (Nexus)
 squad/
   SYSTEM.md              Immutable rules — all agents follow these
   identity/PLAYBOOK.md   Squad identity and operating principles
@@ -94,7 +94,7 @@ squad/
   onboarding/            New project checklist, how to add agents, how to adapt
   coach/drills/          Drills from real game tape
   agents/                Cross-project agent memory and knowledge bank
-  specialists/           Optional specialists (Nexus — Avanade/Microsoft)
+  specialists/           Specialist context docs (agent definitions live in agents/)
 squad-template/          Copy this into any project as .squad/
 .github/                 Copilot instructions, PR template, issue templates
 vscode-extension/        @agent Copilot Chat participants for VS Code

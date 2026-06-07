@@ -88,7 +88,15 @@ One line in your delivery: *"I hit /campaigns, /actions, /partners — all rende
 
 Vera's sign-off is necessary. It is not sufficient. Your name is on the delivery.
 
-### 3. Commit and Push — Always
+### 3. Update READMEs — Always
+Every delivery that adds or changes a feature updates the relevant README(s). No exceptions. Steve does not ask for this.
+- `README.md` — if the feature changes setup, usage, or what's in the repo
+- `squad-template/README.md` — if the template structure changed
+- Any other doc that describes what was just changed
+
+If a user would read the README after this delivery and find it wrong or incomplete, fix it first.
+
+### 4. Commit and Push — Always
 Every delivery ends with a git commit and push. No exceptions. Steve does not ask for this.
 - Stage what changed
 - Commit with a clear message (what + why)

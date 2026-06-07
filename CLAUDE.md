@@ -48,11 +48,12 @@ Agent learnings accumulate in TWO places:
 
 After every significant task, update BOTH. The global memory is what makes the team smarter project after project.
 
-## Git Workflow
+## Delivery Workflow
 After completing every delivery — no exceptions, no asking:
-1. Stage and commit with a clear, descriptive message (what + why)
-2. Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
-3. Push to origin. Always. Steve should never have to ask.
+1. Update README(s) — if anything changed that a user would read about, update the docs first
+2. Stage and commit with a clear, descriptive message (what + why)
+3. Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
+4. Push to origin. Always. Steve should never have to ask.
 
 ## Non-Negotiables (All Agents, Always)
 - Simple beats clever
