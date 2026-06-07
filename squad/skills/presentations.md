@@ -1,6 +1,46 @@
-# SKILL: Presentations — PowerPoint & HTML/React Slides
+# SKILL: Presentations — PowerPoint, HTML Fullscreen & React Slides
 > Marlo designs. Kevin writes the content. Eric builds the code-driven version.
 > Choose the format before anyone starts — building the wrong thing is expensive.
+
+## Steve's Default for Demos and Internal Presentations
+
+**Fullscreen HTML presenter** — one slide per page, keyboard/clicker navigation, no scrollbars, no mouse required.
+
+Rules Marlo enforces before Eric builds anything:
+1. `width: 100vw; height: 100vh; overflow: hidden` on every slide container
+2. One slide = one page. If the content doesn't fit, it's two slides.
+3. Spacebar and right-arrow advance. Left-arrow goes back. These are the signals a Logitech presenter clicker sends — design for clicker-first.
+4. URL updates per slide (`#1`, `#2`) so a specific slide can be shared.
+5. Visible slide counter (`3 / 12`) in a corner.
+6. CSS custom properties for all brand colours and fonts — one variable file to skin the whole deck.
+
+```html
+<!-- Minimal fullscreen slide structure -->
+<style>
+  :root { --bg: #0f172a; --fg: #f8fafc; --accent: #6366f1; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { width: 100vw; height: 100vh; overflow: hidden; background: var(--bg); color: var(--fg); font-family: system-ui; }
+  .slide { width: 100vw; height: 100vh; display: none; align-items: center; justify-content: center; padding: 4rem; }
+  .slide.active { display: flex; flex-direction: column; }
+</style>
+
+<script>
+  let current = 0;
+  const slides = document.querySelectorAll('.slide');
+  function show(n) {
+    slides.forEach((s, i) => s.classList.toggle('active', i === n));
+    location.hash = n + 1;
+  }
+  document.addEventListener('keydown', e => {
+    if (['ArrowRight', 'Space', 'PageDown'].includes(e.key)) show(Math.min(current + 1, slides.length - 1));
+    if (['ArrowLeft', 'PageUp'].includes(e.key)) show(Math.max(current - 1, 0));
+    current = [...slides].findIndex(s => s.classList.contains('active'));
+  });
+  show(location.hash ? parseInt(location.hash.slice(1)) - 1 : 0);
+</script>
+```
+
+---
 
 ---
 
@@ -11,8 +51,12 @@ Does the audience need to edit the file themselves?
 ├── YES → PowerPoint (.pptx) — use pptxgenjs or a template
 └── NO → Continue
 
+Is this a demo, internal talk, or live presenter session?
+├── YES → Fullscreen HTML presenter (see above) or Reveal.js
+└── NO → Continue
+
 Is the presentation data-driven or developer-facing?
-├── YES → HTML/React (Reveal.js or Sli.dev) — live charts, code highlighting
+├── YES → Reveal.js + React components — live charts, code highlighting
 └── NO → Continue
 
 Does the audience expect a polished, brand-consistent deck?
@@ -20,8 +64,9 @@ Does the audience expect a polished, brand-consistent deck?
 └── NO → Sli.dev / markdown slides — fastest to produce, version-controllable
 ```
 
+**Default for demos and internal presentations:** Fullscreen HTML presenter (Steve's preference)
 **Default for non-technical stakeholders (donors, board, FoEI partners):** PowerPoint via `pptxgenjs`
-**Default for technical / internal / developer audience:** Sli.dev or Reveal.js
+**Default for technical / dev audience:** Reveal.js or Sli.dev
 **Default for AI-generated decks from data:** `pptxgenjs` in a Hono API route
 
 ---

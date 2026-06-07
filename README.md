@@ -39,7 +39,7 @@ Outside the core 12 — activated per-project when needed. Specialists live in `
 
 | Agent | Role |
 |-------|------|
-| **Nexus** | Avanade/Microsoft platform expert — Azure, M365, Fabric, Copilot, Avanade service lines |
+| **Nexus** | Avanade/Microsoft platform expert — Azure, M365, Fabric, Power Platform (architect-level), Databricks, data governance (Purview, Unity Catalog), Copilot Studio, all Avanade service lines |
 
 ---
 
