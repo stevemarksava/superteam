@@ -1,0 +1,41 @@
+{
+  "name": "superteam-copilot-participants",
+  "displayName": "Superteam Copilot Participants",
+  "description": "Registers Superteam agents as GitHub Copilot Chat participants",
+  "version": "0.1.0",
+  "publisher": "stevemarksava",
+  "engines": { "vscode": "^1.90.0" },
+  "categories": ["Chat"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "chatParticipants": [
+      { "id": "superteam.superman", "name": "superman", "description": "Lead agent. Steve's single point of contact.", "isSticky": true },
+      { "id": "superteam.eric", "name": "eric", "description": "Superstar coder.", "isSticky": true },
+      { "id": "superteam.vera", "name": "vera", "description": "Quality assurance — nothing ships without her sign-off.", "isSticky": true },
+      { "id": "superteam.bob", "name": "bob", "description": "Solution architect — blueprints before builds.", "isSticky": true },
+      { "id": "superteam.paulien", "name": "paulien", "description": "Scrum master and planner.", "isSticky": true },
+      { "id": "superteam.marlo", "name": "marlo", "description": "UX designer.", "isSticky": true },
+      { "id": "superteam.athanasios", "name": "athanasios", "description": "Researcher and intelligence.", "isSticky": true },
+      { "id": "superteam.kryptonite", "name": "kryptonite", "description": "Red team — attacks plans before builds.", "isSticky": true },
+      { "id": "superteam.kevin", "name": "kevin", "description": "Report builder.", "isSticky": true },
+      { "id": "superteam.coach", "name": "coach", "description": "Squad coach.", "isSticky": true },
+      { "id": "superteam.g", "name": "g", "description": "The money man — costs, pricing, economics.", "isSticky": true },
+      { "id": "superteam.georgiana", "name": "georgiana", "description": "Motivator and Coach bridge.", "isSticky": true }
+    ]
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.x",
+    "@types/vscode": "^1.90.0",
+    "@vscode/vsce": "^3.x",
+    "typescript": "^5.x"
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  }
+}
