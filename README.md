@@ -1,127 +1,114 @@
 # Superteam
 
-A personal AI squad for Claude Code — 12 specialist agents that work as a coordinated team. Built by Steve Marks.
+A personal AI squad for [Claude Code](https://claude.ai/code). 12 specialist agents that coordinate like a team — one voice in, clean answer out.
 
-## What It Is
+## Setup
 
-Superteam replaces the single-assistant model with a squad of named agents, each with a distinct role, character, and set of responsibilities. Superman leads. You talk to him. He routes to the right people and delivers one clean answer back.
+```bash
+git clone https://github.com/stevemarksava/superteam.git ~/.claude
+```
 
-The squad covers the full build cycle: research → architecture → planning → design → code → quality → reporting — with a coach watching the team's performance across every project.
+If `~/.claude` already exists, copy `agents/`, `squad/`, and `CLAUDE.md` manually.
+
+Reload Claude Code. Superman answers.
+
+---
 
 ## The Squad
 
+| Agent | Role | Disciple |
+|-------|------|---------|
+| **Superman** | Lead — your single point of contact | Peter · The Bold Leader |
+| **Paulien** | Scrum master, planner, backlog | James (Alphaeus) · The Quiet Backbone |
+| **Bob** | Solution architect | Philip · The Practical Questioner |
+| **Eric** | Superstar coder | James (Zebedee) · The Focused Achiever |
+| **Marlo** | UX designer | Andrew · The Connector |
+| **Kevin** | Reports and documentation | Matthew · The Systematic Analyst |
+| **Georgiana** | Motivator, Coach bridge | John · The Relational Visionary |
+| **Vera** | Quality gate — nothing ships without her | Thomas · The Careful Doubter |
+| **Athanasios** | Researcher, intelligence, knowledge bank | Thaddaeus · The Hidden Faithful |
+| **G** | Finance — costs, pricing, economics | Bartholomew · The Honest Skeptic |
+| **Coach** | Watches team performance, writes game tape | Simon the Zealot · The Passionate Idealist |
+| **Kryptonite** | Red team — attacks plans before builds | Judas · The Warning |
+
+> Disciple labels are from the **Racecar Discipleship Framework** — character archetypes, not personality tests.
+
+### Specialist Tier
+
+Outside the core 12 — activated per-project when needed:
+
 | Agent | Role |
 |-------|------|
-| **Superman** | Lead — your single point of contact |
-| **Paulien** | Scrum master, planner, backlog owner |
-| **Bob** | Solution architect — blueprints before builds |
-| **Eric** | Superstar coder |
-| **Marlo** | UX designer + product voice |
-| **Kevin** | Reports, summaries, documentation |
-| **Georgiana** | Motivator, bridge between Coach and the team |
-| **Vera** | Quality gate — nothing ships without her sign-off |
-| **Athanasios** | Researcher, intelligence, knowledge bank |
-| **G** | Finance — costs, pricing, economics |
-| **Coach** | Watches team performance, writes game tape |
-| **Kryptonite** | Red team — attacks plans before Eric builds them |
+| **Nexus** | Avanade/Microsoft platform expert — Azure, M365, Fabric, Copilot, Avanade service lines |
 
-## How to Use It
+---
 
-### Prerequisites
-- [Claude Code](https://claude.ai/code) CLI installed
-- Anthropic API access
+## Usage
 
-### Setup
+Just start a Claude Code session. Superman is the default.
 
-1. **Clone this repo into your Claude config directory:**
-   ```bash
-   git clone https://github.com/stevemarksava/superteam.git ~/.claude
-   ```
-   > If you already have a `~/.claude` directory, clone it elsewhere and copy the `agents/` and `squad/` folders in manually.
-
-2. **That's it.** Claude Code loads `~/.claude/CLAUDE.md` automatically on every session.
-
-### Talking to the Squad
-
-Just start a Claude Code session. Superman is always the default.
+Address any agent by name to switch:
 
 ```
-> What are we building?
+Bob — blueprint the data model for this
+Eric — build the campaigns API
+Vera — what test cases are missing?
+Kryptonite — attack this plan before we build it
+Nexus — what's the right Azure service for this?
 ```
 
-To activate a specific agent, say their name:
+### GitHub Copilot
 
-```
-> Athanasios — research the competitive landscape for X
-> Paulien — break this into a sprint plan
-> Kryptonite — attack this architecture before we build it
-```
+Copy `.github/copilot-instructions.md` into any repo to load squad context into Copilot Chat.
 
-### Squad Modes
+Or install the VS Code extension for `@superman`, `@eric`, `@vera` etc. as real Copilot Chat participants:
 
-Superman assigns a mode before any build starts:
-
-| Mode | Agents | Cost ceiling | When to use |
-|------|--------|-------------|-------------|
-| **Solo** | Superman + Eric + Vera | ~$1.50 | 1-2 file change |
-| **Squad** | 5-8 agents | ~$6 | New feature, established patterns |
-| **Full** | All 12 | ~$12 | New domain, architecture, complex build |
-
-### Per-Project Setup
-
-Each project gets its own `.squad/` folder for decisions, coach game tape, and agent memories:
-
-```
-your-project/
-└── .squad/
-    ├── decisions/       # Every architectural decision logged here
-    ├── coach/
-    │   └── game-tape/   # Coach's sprint reviews
-    └── agents/
-        └── <name>/
-            └── memory/  # Agent memory per project
+```powershell
+code --install-extension "vscode-extension/superteam-copilot-participants-0.1.0.vsix"
 ```
 
-Superman creates this on first run. See `squad/onboarding/NEW_PROJECT.md` for the full onboarding checklist.
+---
+
+## New Project
+
+Copy the squad template into your project:
+
+```powershell
+Copy-Item -Recurse squad-template\ your-project\.squad\
+```
+
+Then run `squad/onboarding/NEW_PROJECT.md` with Superman before any agent touches code.
+
+---
 
 ## What's in This Repo
 
 ```
-agents/          Agent definition files — each agent's identity, role, and rules
+agents/                  Core squad agent definitions (12 agents)
 squad/
-  SYSTEM.md          Immutable system rules all agents follow
-  identity/
-    PLAYBOOK.md      How the team plays — the squad identity doc
-  architecture/
-    squad-modes.md   Mode definitions and agent mesh
-    cost-model.md    Token budgets and cost ceilings
-  skills/            Specialist knowledge cards (graph, GIS, reporting, etc.)
-  onboarding/
-    NEW_PROJECT.md   Checklist for starting a new project with the squad
-  agents/
-    athanasios/
-      knowledge/     Athanasios's accumulated research across projects
-CLAUDE.md        Global loader — activates the squad in every session
-settings.json    Claude Code permissions and config
+  SYSTEM.md              Immutable rules — all agents follow these
+  identity/PLAYBOOK.md   Squad identity and operating principles
+  architecture/          Squad modes, cost model, token budgets
+  ceremonies/            Sprint planning, standup, retro, review, grooming
+  skills/                Skill cards — graph, spatial, DS/ML, DevOps, compliance, etc.
+  onboarding/            New project checklist, how to add agents, how to adapt
+  coach/drills/          Drills from real game tape
+  agents/                Cross-project agent memory and knowledge bank
+  specialists/           Optional specialists (Nexus — Avanade/Microsoft)
+squad-template/          Copy this into any project as .squad/
+.github/                 Copilot instructions, PR template, issue templates
+vscode-extension/        @agent Copilot Chat participants for VS Code
 ```
 
-## Philosophy
+---
 
-- **Simple beats clever.** Always.
-- **Working beats perfect** on first pass.
-- **No bluffing** — if an agent doesn't know, it says so.
-- **Every decision logged** — nothing lives in memory that should be in a file.
-- **Human first** — we build for people, not for other developers.
+## Adapting for Your Team
 
-## Adapting It for Yourself
-
-1. Fork the repo
-2. Edit `CLAUDE.md` — replace Steve's context with yours
-3. Edit `agents/superman.md` — update the routing table and delivery style to match how you work
-4. Edit `squad/identity/PLAYBOOK.md` — make it your team's identity, not Steve's
-5. Add or remove agents in `agents/` as needed — the squad is yours to shape
-
-Each agent file is a standalone markdown prompt. They are simple to read, edit, and extend.
+1. Fork this repo
+2. Update `CLAUDE.md` — replace Steve's context with yours
+3. Update `agents/superman.md` — change "Steve" to your name
+4. Update `squad/identity/PLAYBOOK.md` — make it your team's principles
+5. See `squad/onboarding/ADAPT_TO_YOUR_DOMAIN.md` for a full guide
 
 ---
 

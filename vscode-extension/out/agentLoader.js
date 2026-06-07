@@ -47,39 +47,30 @@ const gray_matter_1 = __importDefault(require("gray-matter"));
  */
 function loadAgents(outputChannel) {
     const agents = new Map();
-    const agentNames = [
-        'superman',
-        'eric',
-        'vera',
-        'bob',
-        'paulien',
-        'marlo',
-        'athanasios',
-        'kryptonite',
-        'kevin',
-        'coach',
-        'g',
-        'georgiana'
+    const coreAgents = [
+        'superman', 'eric', 'vera', 'bob', 'paulien', 'marlo',
+        'athanasios', 'kryptonite', 'kevin', 'coach', 'g', 'georgiana'
     ];
-    const baseDir = path.join(os.homedir(), '.claude', 'agents');
-    for (const name of agentNames) {
+    const specialistAgents = ['nexus'];
+    const claudeDir = path.join(os.homedir(), '.claude');
+    const coreDir = path.join(claudeDir, 'agents');
+    const specialistsDir = path.join(claudeDir, 'squad', 'specialists');
+    const toLoad = [
+        ...coreAgents.map(name => ({ name, dir: coreDir })),
+        ...specialistAgents.map(name => ({ name, dir: specialistsDir }))
+    ];
+    for (const { name, dir } of toLoad) {
         try {
-            const filePath = path.join(baseDir, `${name}.md`);
+            const filePath = path.join(dir, `${name}.md`);
             if (!fs.existsSync(filePath)) {
                 outputChannel.appendLine(`[Superteam] Agent file not found: ${filePath}`);
                 continue;
             }
             const fileContent = fs.readFileSync(filePath, 'utf-8');
             const parsed = (0, gray_matter_1.default)(fileContent);
-            // Extract description from frontmatter or use agent id as fallback
             const description = parsed.data.description || name;
-            // Use the markdown body as the system prompt
             const systemPrompt = parsed.content.trim();
-            agents.set(name, {
-                id: name,
-                description,
-                systemPrompt
-            });
+            agents.set(name, { id: name, description, systemPrompt });
         }
         catch (error) {
             outputChannel.appendLine(`[Superteam] Failed to load agent ${name}: ${error}`);

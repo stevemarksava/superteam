@@ -2,7 +2,7 @@
   "name": "superteam-copilot-participants",
   "displayName": "Superteam Copilot Participants",
   "description": "Registers Superteam agents as GitHub Copilot Chat participants",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "publisher": "stevemarksava",
   "engines": { "vscode": "^1.90.0" },
   "categories": ["Chat"],
@@ -21,7 +21,8 @@
       { "id": "superteam.kevin", "name": "kevin", "description": "Report builder.", "isSticky": true },
       { "id": "superteam.coach", "name": "coach", "description": "Squad coach.", "isSticky": true },
       { "id": "superteam.g", "name": "g", "description": "The money man — costs, pricing, economics.", "isSticky": true },
-      { "id": "superteam.georgiana", "name": "georgiana", "description": "Motivator and Coach bridge.", "isSticky": true }
+      { "id": "superteam.georgiana", "name": "georgiana", "description": "Motivator and Coach bridge.", "isSticky": true },
+      { "id": "superteam.nexus", "name": "nexus", "description": "Avanade/Microsoft platform expert — Azure, M365, Fabric, Copilot, Avanade service lines.", "isSticky": true }
     ]
   },
   "dependencies": {
