@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Superteam — Welcome</title>
+  <link rel="icon" type="image/png" href="https://avatars.githubusercontent.com/u/185476941?v=4">
+  <link rel="icon" type="image/svg+xml" href="https://digitalasset.avanade.com/content/dam/accenture/final/avanade-com/images/content-type-2/avanade-logo-color.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -301,6 +303,50 @@
       text-transform: uppercase;
       margin: 0.5rem 0 1.5rem;
     }
+    #slide-2 .expert-pill {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+      margin: 1.75rem auto 0;
+      padding: 1.2rem 1.4rem;
+      width: min(46rem, 100%);
+      border-radius: 18px;
+      background: rgba(248,200,84,0.08);
+      border: 1px solid rgba(245,158,11,0.18);
+      box-shadow: 0 18px 50px rgba(245,158,11,0.08);
+    }
+    #slide-2 .expert-pill .logo {
+      width: 3.5rem;
+      height: 3.5rem;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(232,93,12,0.95), rgba(255,149,0,0.9));
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 0 12px 30px rgba(232,93,12,0.25);
+    }
+    #slide-2 .expert-pill .expert-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      color: var(--fg);
+      text-align: left;
+    }
+    #slide-2 .expert-pill .expert-copy strong {
+      color: white;
+      font-weight: 700;
+    }
+    #slide-2 .expert-pill .expert-copy span {
+      color: var(--fg-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
     #slide-2 .punchline {
       margin-top: 2.5rem;
       font-size: clamp(0.95rem, 1.8vw, 1.3rem);
@@ -457,6 +503,20 @@
     .agent-card.superman-card {
       background: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(99,102,241,0.06));
       border-color: rgba(0,212,255,0.2);
+    }
+    .agent-card.avanade-card {
+      background: linear-gradient(180deg, rgba(255,149,0,0.1), rgba(17,24,39,0.95));
+      border-color: rgba(255,149,0,0.28);
+      box-shadow: 0 20px 40px rgba(255,149,0,0.08);
+    }
+    .agent-card.avanade-card .agent-badge span {
+      background: rgba(255,149,0,0.26);
+    }
+    .agent-card.avanade-card .agent-role {
+      color: #ffe8c7;
+    }
+    .agent-card.avanade-card .agent-why {
+      color: #d6c8b1;
     }
 
     /* ══════════════════════════════════════════════════════════════
@@ -946,6 +1006,13 @@
         A chatbot <strong>waits for instructions.</strong><br>
         A squad <strong>thinks ahead.</strong>
       </p>
+      <div class="expert-pill">
+        <div class="logo">A</div>
+        <div class="expert-copy">
+          <strong>Nexus is the Avanade expert.</strong>
+          <span>He brings industry and practice domain knowledge, department access, and the right Azure/Fabric/Power Platform patterns to help FDEs use their own superpowers in the sales cycle and delivery.</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1040,11 +1107,11 @@
         <div class="agent-why">After every delivery, Coach checks whether the squad learned the right lesson and whether the next session can be smoother.</div>
       </div>
 
-      <div class="agent-card blue">
+      <div class="agent-card blue avanade-card">
         <div class="agent-name">Nexus</div>
-        <div class="agent-badge"><span></span>Microsoft</div>
-        <div class="agent-role">Azure, Fabric, Power Platform expertise.</div>
-        <div class="agent-why">Recommends the right Microsoft platform patterns and avoids bad cloud/platform choices.</div>
+        <div class="agent-badge"><span></span>Avanade</div>
+        <div class="agent-role">Industry practice, department access, and platform strategy.</div>
+        <div class="agent-why">Knows Avanade domain expertise, practice-level access, and the right Azure/Fabric/Power Platform patterns for sales and delivery.</div>
       </div>
 
     </div>
@@ -1123,8 +1190,10 @@
         <div class="label">Day to day</div>
         <h2>Using the Squad</h2>
         <p class="intro-text">
-          You speak to <strong>Superman</strong> by default.<br><br>
-          Address any agent by name to switch. They adopt that role for the response, then return to Superman on your next message.
+          You speak to <strong>Superman</strong> by default. He is the only agent you need to address.
+          Superman already knows all the squad skills and their superpowers, and he will route the right specialist if needed.
+          The squad can also load and remove extra skills on demand from <strong>skills.sh</strong>, so the toolkit stays lean and tailored to your delivery.
+          Directly naming an agent is optional — use it only when you want a specific perspective.
         </p>
       </div>
 
