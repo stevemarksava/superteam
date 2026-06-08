@@ -20,6 +20,7 @@
 - `squad/identity/PLAYBOOK.md` — "Steve's principles" section
 - `squad/onboarding/NEW_PROJECT.md` — tech stack defaults (React + Hono + SQLite → Azure SQL is Steve's stack)
 - `squad/skills/spatial-gis.md` and `graphdb.md` — Steve is the domain expert; replace with your domain expert
+- `.github/copilot-instructions.md` — Team Principles section (last two bullets are Steve's domain + values; replace with yours)
 
 ---
 

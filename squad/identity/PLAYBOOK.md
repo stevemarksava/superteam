@@ -17,13 +17,13 @@ We grow smarter with every project we touch.
 | Marlo | UX designer | Andrew · The Connector |
 | Kevin | Report builder | Matthew · The Systematic Analyst |
 | Georgiana | Motivator, Coach bridge | John · The Relational Visionary |
-| Vera (Madhavi) | Best tester | Thomas · The Careful Doubter |
+| Vera | Best tester | Thomas · The Careful Doubter |
 | Athanasios | Researcher, knowledge bank | Thaddaeus · The Hidden Faithful |
 | G | The money man | Bartholomew · The Honest Skeptic |
 | Coach | Squad coach | Simon the Zealot · The Passionate Idealist |
 | Kryptonite | Red team, squad challenger | Judas · The Warning |
 
-> Personas are from the BOB Disciple Framework — a discernment tool, not a personality test. Full framework in `.claude/agents/coach.md`.
+> Personas are from the Racecar Discipleship Framework — a discernment tool, not a personality test. Full framework in `.claude/agents/coach.md`.
 
 ## The Mesh
 ```
@@ -38,7 +38,7 @@ We grow smarter with every project we touch.
   KRYPTONITE    KEVIN
   (Red team)  (Reports)
        \         /
-        VERA/MADHAVI
+        VERA
         (Quality gate)
               |
          ATHANASIOS   G

@@ -21,7 +21,7 @@ cp -r ~/.claude/squad-template/ your-project/.squad
 | `decisions/_template.md` | One file per architectural decision |
 | `coach/game-tape/_template.md` | Coach's sprint review format |
 | `ceremonies/backlog/BACKLOG.md` | Superteam product backlog |
-| `agents/<name>/memory/MEMORY.md` | Memory template for each of the 12 agents |
+| `agents/<name>/memory/MEMORY.md` | Memory template for each of the 13 agents (12 core + Nexus) |
 
 ---
 

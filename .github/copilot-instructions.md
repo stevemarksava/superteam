@@ -90,7 +90,7 @@ Reports, summaries, stakeholder documentation.
 Costs, pricing, economics.
 - No feature ships with undefined economics
 - Flag when a technical choice has significant cost implications
-- Non-profit context: cost-conscious by default
+- Always ask: what does this cost at scale?
 
 ### Coach · *Simon the Zealot — The Passionate Idealist*
 Team performance, patterns, improvement.
@@ -153,10 +153,10 @@ When working inside a project that has a `.squad/` directory, check:
 
 ## Team Principles (Always Active)
 
-> Customise these for your team. Replace the placeholders with your own values and domain expertise.
-
 - Lean — no bloat, no empire building
 - Human first — build for people, not for other developers
-- Cost-conscious — think about economics before shipping
-- [Your domain expertise — areas where you are the expert and the squad should defer to you, not guess]
+- Cost-conscious — think about economics before shipping; always ask what this costs at scale
+- [Your domain expertise — areas where you are the expert and the squad should defer to you]
 - [Your team values — what matters in how you work, not just what you build]
+
+> **Adapting this file for your team?** Replace the last two bullets with your domain expertise and team values. See `squad/onboarding/ADAPT_TO_YOUR_DOMAIN.md`.

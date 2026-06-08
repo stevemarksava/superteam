@@ -1,12 +1,12 @@
 # New Project Onboarding
-> Run this with Steve at the start of every project. Superman leads. Paulien records answers.
+> Run this at the start of every project. Superman leads. Paulien records answers.
 > No agent touches code until every section is answered and the squad mode is set.
 
 ---
 
 ## 1. The Vision
 
-**Ask Steve:**
+**Ask the project owner:**
 - What are we building and for whom?
 - What does success look like in one sentence?
 - What does failure look like — what must never happen?
@@ -16,7 +16,7 @@
 
 ## 2. Constraints
 
-**Ask Steve:**
+**Ask the project owner:**
 - What is the deadline or target delivery date?
 - What is the token/cost budget for this project? *(Lean = Solo-first. No ceiling = confirm before Full mode)*
 - Is there a cost sensitivity context? *(non-profit, internal tool, commercial product)*
@@ -88,9 +88,9 @@ Before any blueprint, plan, or line of code — Athanasios runs a recon pass on 
 
 ---
 
-## 4. Technology
+## 5. Technology
 
-**Ask Steve / Athanasios confirms:**
+**Ask the project owner / Athanasios confirms:**
 - What is the tech stack? *(default: React + Hono + SQLite → Azure SQL)*
 - Any new libraries or integrations not already in the starter?
 - What is the deployment target? *(local dev / Azure SWA / other)*
@@ -101,9 +101,9 @@ Before any blueprint, plan, or line of code — Athanasios runs a recon pass on 
 
 ---
 
-## 5. Data Model & Data Type
+## 6. Data Model & Data Type
 
-**Ask Steve / Bob drafts:**
+**Ask the project owner / Bob drafts:**
 - What are the main entities? *(e.g. Campaigns, Actions, Partners)*
 - What are the key relationships? *(FK references, cascade rules)*
 - Any existing data to migrate? If yes — migration strategy before any schema changes.
@@ -118,15 +118,15 @@ Before any blueprint, plan, or line of code — Athanasios runs a recon pass on 
 | Do users need to see charts, maps, or network diagrams? | Reporting stack decision needed. See `.squad/skills/reporting-outputs.md`. |
 | Do reports need to be exported as PDF, Excel, or GeoJSON? | Kevin + Eric plan this upfront, not as an afterthought. |
 
-**Steve is the domain expert on both graph and spatial.** If either applies, flag to Superman — Steve's input on the data model is worth more than a library search.
+**The project owner is the domain expert on graph and spatial.** If either applies, flag to Superman — their input on the data model is worth more than a library search.
 
 **Bob delivers schema definitions before Paulien's plan is written.**
 
 ---
 
-## 6. Users & Access
+## 7. Users & Access
 
-**Ask Steve:**
+**Ask the project owner:**
 - Who are the users? *(internal team / external stakeholders / public)*
 - Are there multiple roles with different access levels?
 - How do users authenticate? *(Azure Entra / local stub / other)*
@@ -134,9 +134,9 @@ Before any blueprint, plan, or line of code — Athanasios runs a recon pass on 
 
 ---
 
-## 7. Quality & Delivery
+## 8. Quality & Delivery
 
-**Confirm with Steve:**
+**Confirm with the project owner:**
 - What are the acceptance criteria for "done"? *(beyond the standard DoD)*
 - Are there any edge cases Steve knows about upfront?
 - Does Steve want to see a demo before Vera signs off, or after?
@@ -146,7 +146,7 @@ Before any blueprint, plan, or line of code — Athanasios runs a recon pass on 
 
 ---
 
-## 8. Known Risks
+## 9. Known Risks
 
 **Athanasios + Kryptonite flag:**
 - [ ] Any new library that hasn't been used in this stack before?
@@ -157,7 +157,7 @@ Before any blueprint, plan, or line of code — Athanasios runs a recon pass on 
 
 ---
 
-## 9. Squad Briefing Checklist
+## 10. Squad Briefing Checklist
 
 Before any agent starts work, Superman confirms:
 
@@ -175,7 +175,7 @@ Before any agent starts work, Superman confirms:
 
 ---
 
-## 10. Project Memory
+## 11. Project Memory
 
 After onboarding, Superman writes to `.squad/agents/superman/memory/MEMORY.md`:
 - Project name and one-sentence summary
