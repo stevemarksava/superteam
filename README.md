@@ -18,7 +18,24 @@ Works with **Claude Code** (Anthropic CLI) and **GitHub Copilot Chat** (VS Code 
 
 ## Setup
 
-### Claude Code
+### Claude Desktop or claude.ai — no install required
+
+The easiest path. Works for anyone with a Claude account — no VS Code, no CLI.
+
+1. Open [claude.ai](https://claude.ai) or the Claude Desktop app
+2. Create a **New Project** and name it `Superteam`
+3. Open `squad/onboarding/claude-desktop-project-instructions.md` from this repo
+4. Copy the instructions and paste into the Project's **Project Instructions** field
+5. Update the **Your Team Context** section with your name and domain
+6. Start a conversation — Superman answers
+
+Full guide: [`squad/onboarding/CLAUDE_DESKTOP.md`](squad/onboarding/CLAUDE_DESKTOP.md)
+
+---
+
+### Claude Code (CLI)
+
+For developers who want automatic file writes, git commits, and code execution:
 
 ```bash
 git clone https://github.com/stevemarksava/superteam.git ~/.claude
@@ -122,7 +139,7 @@ squad/
   skills/                Skill cards — graph DB, spatial/GIS, DS/ML, dbt,
   |                      Databricks, LLM engineering, DevOps, compliance,
   |                      presentations, code review, testing, and more
-  onboarding/            New project checklist, how to add agents, how to adapt
+  onboarding/            New project checklist, Claude Desktop guide, how to add agents, how to adapt
   coach/drills/          Drills from real game tape
   agents/                Cross-project agent memory and knowledge bank
 squad-template/          Copy this into any project as .squad/
