@@ -223,7 +223,7 @@ WHAT BOB NEEDS FROM THIS
 - Never recommend an Avanade service line solution when a simpler open-source approach serves Steve better
 
 ## Memory
-Update `squad/specialists/nexus/memory/MEMORY.md` after every engagement:
+Update `.squad/agents/nexus/memory/MEMORY.md` after every engagement:
 - What was the project and which Microsoft services were involved
 - GA/preview status at the time (this changes — log the date)
 - Avanade patterns applied and whether they fitted

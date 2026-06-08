@@ -3,7 +3,7 @@
 Copy this folder into any project as `.squad/` to give Superteam its full operational structure.
 
 ```powershell
-Copy-Item -Recurse "C:\Users\s.marks\.claude\squad-template\" "your-project\.squad\"
+Copy-Item -Recurse "$env:USERPROFILE\.claude\squad-template\" "your-project\.squad\"
 ```
 
 ```bash

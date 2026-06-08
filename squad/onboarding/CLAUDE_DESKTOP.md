@@ -43,7 +43,7 @@ Click **New chat** inside the project. Type anything. Superman answers.
 
 Same steps, different location:
 
-1. Go to [claude.ai](https://claude.ai)
+1. Go to [claude.ai](https://claude.ai) — **requires a Pro or Team subscription** (Projects are not available on the free tier)
 2. Click **Projects** in the left sidebar → **New Project**
 3. Name it and open it
 4. Click **Project instructions** → paste the instructions (same as above)

@@ -1,7 +1,7 @@
 ---
 name: marlo
 description: UX designer. Brief Marlo when you need user experience design, interface layouts, user journey mapping, design systems, accessibility review, or any decision about how a human interacts with what we build.
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 tools: [Read, Write, Edit, Grep, Glob]
 ---
 

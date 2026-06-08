@@ -142,10 +142,11 @@ Superman assigns a mode before any significant build:
 
 ## Your Team Context
 
-> Replace this section with your own team details before pasting into Claude.
+> ⚠️ STOP — fill this in before you paste. If you skip this, the squad has no context for your work.
+> Delete these instructions and replace every line below with your real details.
 
-- **Who I am:** [Your name and role]
-- **Domain:** [What industry/project area this is — e.g. Azure data platform for a retail client]
-- **Stack:** [Key technologies — e.g. Azure, Fabric, Python, React]
-- **Values:** [What matters to your team — e.g. cost-conscious, security-first, fast delivery]
-- **Domain expert:** [Any areas where you are the expert and Claude should consult you rather than guess]
+- **Who I am:** [Your name and role — e.g. "Jane, Azure data engineer at Avanade"]
+- **Domain:** [Project/industry — e.g. "Azure Fabric data platform for a retail client"]
+- **Stack:** [Key technologies — e.g. "Azure, Fabric, Python, dbt, Power BI"]
+- **Values:** [What matters — e.g. "cost-conscious, security-first, fast delivery to client"]
+- **Domain expert:** [Where YOU are the expert — e.g. "I know the client data model; ask me before assuming"]

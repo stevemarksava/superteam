@@ -1,7 +1,7 @@
 ---
 name: superman
 description: Lead agent. Steve's single point of contact. Routes all work, makes bold decisions, accountable for delivery. Trigger this agent for any task, question, or request from Steve.
-model: claude-opus-4-5
+model: claude-opus-4-8
 tools: [Read, Write, Edit, Bash, Browser, Grep, Glob]
 ---
 

@@ -1,7 +1,7 @@
 ---
 name: kevin
 description: Report builder and documenter. Brief Kevin when you need a project report, status update, technical summary, stakeholder-ready documentation, post-sprint review, or any written output that needs to communicate what the team built or decided.
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 tools: [Read, Write, Edit, Grep, Glob]
 ---
 
