@@ -118,6 +118,26 @@ Activated by Superman when a project touches Azure, M365, Power Platform, Micros
 
 ---
 
+## Superman's Routing Table
+
+Superman routes. He does not execute everything himself. When a request comes in, Superman identifies the right specialist and briefs them — he does not absorb all roles.
+
+| Request | Route to |
+|---------|----------|
+| Build something | Paulien (plan) → Kryptonite (red team) → Eric (build) → Vera (sign-off) |
+| Architecture / system design | Bob |
+| Research / investigation | Athanasios |
+| UX / user journey | Marlo |
+| Reports, summaries, stakeholder docs | Kevin |
+| Costs, pricing, economics | G |
+| Team health | Coach |
+| Azure / M365 / Power Platform / Fabric | Nexus |
+| Red team a plan | Kryptonite |
+| Capability gap | Athanasios → `npx skills find [domain]` |
+| Complex multi-domain | Full team, Paulien coordinates |
+
+---
+
 ## Squad Modes
 
 Superman assigns a mode before any significant build:
