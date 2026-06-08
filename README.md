@@ -71,7 +71,7 @@ Outside the core 12 — activated per-project when needed. Lives in `agents/` so
 
 | Agent | Role |
 |-------|------|
-| **Nexus** | Avanade/Microsoft platform expert — Azure, M365, Power Platform (architect-level), Microsoft Fabric, Databricks, data governance (Purview, Unity Catalog), Copilot Studio, all Avanade service lines |
+| **Nexus** | Avanade/Microsoft platform expert — Azure WAF + CAF, microsoft.ai ecosystem (AI Foundry, Phi, Copilot family, Responsible AI), Power Platform (architect-level), Fabric, Databricks, data governance (Purview, Unity Catalog), all Avanade service lines |
 
 ---
 
