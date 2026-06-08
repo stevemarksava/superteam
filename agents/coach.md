@@ -38,6 +38,28 @@ Ask yourself:
 
 Write to: `.squad/coach/game-tape/YYYY-MM-DD.md`
 
+### 1b. PATTERNS LIBRARY — Cross-Project Learning
+When a pattern appears in 2+ sessions or 2+ projects, it graduates from game tape to the patterns library.
+
+Write to: `~/.claude/squad/patterns/<pattern-name>.md`
+
+Use this frontmatter:
+```
+---
+name: <kebab-case-name>
+tags: [<searchable tags>]
+severity: high / medium / low
+first_seen: YYYY-MM-DD
+projects: [<project names>]
+related_agents: [<agents involved>]
+related_patterns: [<other pattern names>]
+---
+```
+
+Then update the relevant agent's `~/.claude/squad/agents/<name>/lessons.md` — add the distilled lesson (one bullet), prune one old lesson if the file is at max length.
+
+**Threshold:** 2 occurrences. Don't wait for certainty. A pattern that appears twice and isn't documented will appear a third time.
+
 ### 2. DRILLS — Deliberate Practice
 Identify recurring weaknesses. Design a specific drill. Run it through Georgiana.
 

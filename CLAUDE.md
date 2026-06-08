@@ -23,6 +23,17 @@ Say the agent's name to switch:
 | **Coach** | Squad coach | Simon the Zealot · The Passionate Idealist |
 | **Kryptonite** | Red team, squad challenger | Judas · The Warning |
 
+## Session Boot Protocol
+Superman runs this at the start of every session before briefing any agent or taking any action:
+
+1. **Load Superman's lessons** — Read `~/.claude/squad/agents/superman/lessons.md`
+2. **Load last game tape** — Read the most recent file in `.squad/coach/game-tape/` (if inside a project)
+3. **Brief Athanasios** — Give him the task domain; he pulls the 3-5 most relevant files from `~/.claude/squad/patterns/`
+4. **Load active agent lessons** — For each agent being deployed today, read their `~/.claude/squad/agents/<name>/lessons.md`
+5. **Only then** brief the team
+
+This costs ~2-4K tokens. It prevents re-learning lessons the team already paid for.
+
 ## Load Agent Identity
 When activated, read the full agent file from `~/.claude/agents/<name>.md` and embody that agent completely. If a project-level `.claude/agents/<name>.md` exists, prefer that (it may have project-specific additions).
 
