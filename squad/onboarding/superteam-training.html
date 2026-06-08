@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Superteam — FDE Training</title>
+  <link rel="icon" type="image/png" href="https://avatars.githubusercontent.com/u/185476941?v=4">
+  <link rel="icon" type="image/svg+xml" href="https://digitalasset.avanade.com/content/dam/accenture/final/avanade-com/images/content-type-2/avanade-logo-color.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -365,10 +367,44 @@
     ══════════════════════════════════════════════════════════════ */
     #slide-3 {
       justify-content: flex-start;
-      padding-top: 2.25rem;
+      padding-top: 2rem;
     }
     #slide-3 .slide-header {
-      margin-bottom: 1.25rem;
+      margin-bottom: 0.9rem;
+    }
+    #slide-3 .superman-hub {
+      width: 100%;
+      max-width: 88rem;
+    }
+    #slide-3 .superman-hub .superman-main {
+      width: 100%;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 1.25rem;
+    }
+    #slide-3 .superman-hub .superman-main .sq-name {
+      font-size: clamp(0.9rem, 1.3vw, 1.1rem);
+    }
+    #slide-3 .superman-route-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #00d4ff;
+      opacity: 0.8;
+      white-space: nowrap;
+    }
+    #slide-3 .routing-connector {
+      width: 100%;
+      max-width: 88rem;
+      height: 2.75rem;
+      flex-shrink: 0;
+    }
+    #slide-3 .routing-connector svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
     }
     #slide-3 .agent-grid {
       display: grid;
@@ -1271,14 +1307,44 @@
     <div class="slide-header">
       <div class="eyebrow">The Roster</div>
       <h2>12 Specialists</h2>
-      <p class="sub">Each one owns a specific role. Superman knows when to call who.</p>
+      <p class="sub">One entry point. Superman routes to the right specialist.</p>
     </div>
-    <div class="agent-grid">
 
-      <div class="sq-card c-blue superman-highlight">
-        <div class="sq-name">Superman</div>
-        <div class="sq-role">Your lead. Routes everything. Owns delivery.</div>
+    <!-- Superman hub — top layer -->
+    <div class="superman-hub">
+      <div class="sq-card c-blue superman-highlight superman-main">
+        <div>
+          <div class="sq-name">Superman</div>
+          <div class="sq-role">Your lead. Routes everything. Owns delivery.</div>
+        </div>
+        <div class="superman-route-badge">Your Super FDE speaks here</div>
       </div>
+    </div>
+
+    <!-- Routing connector — 4 columns -->
+    <div class="routing-connector">
+      <svg viewBox="0 0 1000 44" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- trunk from Superman center -->
+        <line x1="500" y1="0" x2="500" y2="18" stroke="#00d4ff" stroke-width="1.5" stroke-opacity="0.65"/>
+        <!-- horizontal distribution bar -->
+        <line x1="125" y1="18" x2="875" y2="18" stroke="#00d4ff" stroke-width="1.5" stroke-opacity="0.4"/>
+        <!-- drops to each of 4 columns -->
+        <line x1="125" y1="18" x2="125" y2="36" stroke="#00d4ff" stroke-width="1.5" stroke-opacity="0.55"/>
+        <line x1="375" y1="18" x2="375" y2="36" stroke="#00d4ff" stroke-width="1.5" stroke-opacity="0.55"/>
+        <line x1="625" y1="18" x2="625" y2="36" stroke="#00d4ff" stroke-width="1.5" stroke-opacity="0.55"/>
+        <line x1="875" y1="18" x2="875" y2="36" stroke="#00d4ff" stroke-width="1.5" stroke-opacity="0.55"/>
+        <!-- arrowheads -->
+        <polygon points="125,38 121,30 129,30" fill="#00d4ff" fill-opacity="0.7"/>
+        <polygon points="375,38 371,30 379,30" fill="#00d4ff" fill-opacity="0.7"/>
+        <polygon points="625,38 621,30 629,30" fill="#00d4ff" fill-opacity="0.7"/>
+        <polygon points="875,38 871,30 879,30" fill="#00d4ff" fill-opacity="0.7"/>
+        <!-- label -->
+        <text x="500" y="14" text-anchor="middle" font-size="8" fill="#6b7280" font-family="monospace" letter-spacing="1.5">routes to</text>
+      </svg>
+    </div>
+
+    <!-- 11 specialists -->
+    <div class="agent-grid">
 
       <div class="sq-card c-indigo">
         <div class="sq-name">Bob</div>

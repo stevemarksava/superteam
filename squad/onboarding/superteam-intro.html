@@ -367,12 +367,12 @@
     ══════════════════════════════════════════════════════════════ */
     #slide-3 {
       justify-content: flex-start;
-      padding-top: 2.5rem;
+      padding-top: 2rem;
     }
     #slide-3 .slide-header {
       width: 100%;
       max-width: 90rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
     }
     #slide-3 .slide-header .label {
       font-size: clamp(0.6rem, 0.9vw, 0.75rem);
@@ -387,6 +387,38 @@
       font-weight: 800;
       letter-spacing: -0.02em;
       line-height: 1.1;
+    }
+    #slide-3 .superman-hub {
+      width: 100%;
+      max-width: 90rem;
+    }
+    #slide-3 .superman-hub .agent-card.superman-main {
+      width: 100%;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+    #slide-3 .superman-route-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #00d4ff;
+      opacity: 0.8;
+      white-space: nowrap;
+      margin-top: 0.2rem;
+    }
+    #slide-3 .routing-connector {
+      width: 100%;
+      max-width: 90rem;
+      height: 2.75rem;
+      flex-shrink: 0;
+    }
+    #slide-3 .routing-connector svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
     }
     #slide-3 .agent-grid {
       display: grid;
@@ -1022,96 +1054,116 @@
   <section class="slide" id="slide-3">
     <div class="slide-header">
       <div class="label">The roster</div>
-      <h2>Meet the Squad</h2>
-      <p class="punchline" style="margin-top:1rem; max-width:64rem; color:var(--fg-muted); font-size:0.95rem; line-height:1.7;">
-        Superteam is a coordinated crew of specialists. Each agent has a focused role, a label that tells you what they do best, and a clear reason for being on the team.
+      <h2>12 Specialists</h2>
+      <p class="punchline" style="margin-top:0.6rem; max-width:64rem; color:var(--fg-muted); font-size:0.9rem; line-height:1.6;">
+        One entry point. Superman routes to the right specialist.
       </p>
     </div>
 
-    <div class="agent-grid">
-
-      <div class="agent-card blue superman-card">
-        <div class="agent-name">Superman</div>
-        <div class="agent-badge"><span></span>Lead</div>
-        <div class="agent-role">Your single point of contact and squad conductor.</div>
-        <div class="agent-why">Keeps everyone aligned, chooses the right specialist, and ensures the answer is coordinated.</div>
+    <!-- Superman hub — top layer -->
+    <div class="superman-hub">
+      <div class="agent-card blue superman-card superman-main">
+        <div>
+          <div class="agent-name">Superman</div>
+          <div class="agent-role">Your lead. Routes everything. Owns delivery.</div>
+        </div>
+        <div class="superman-route-badge">Your Super FDE speaks here</div>
       </div>
+    </div>
+
+    <!-- Routing connector — 6 columns -->
+    <div class="routing-connector">
+      <svg viewBox="0 0 1000 44" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- trunk from Superman center -->
+        <line x1="500" y1="0" x2="500" y2="18" stroke="#00d4ff" stroke-width="1.5" stroke-opacity="0.65"/>
+        <!-- horizontal distribution bar -->
+        <line x1="83" y1="18" x2="917" y2="18" stroke="#00d4ff" stroke-width="1.5" stroke-opacity="0.4"/>
+        <!-- drops to each of 6 columns -->
+        <line x1="83"  y1="18" x2="83"  y2="36" stroke="#00d4ff" stroke-width="1.5" stroke-opacity="0.55"/>
+        <line x1="250" y1="18" x2="250" y2="36" stroke="#00d4ff" stroke-width="1.5" stroke-opacity="0.55"/>
+        <line x1="417" y1="18" x2="417" y2="36" stroke="#00d4ff" stroke-width="1.5" stroke-opacity="0.55"/>
+        <line x1="583" y1="18" x2="583" y2="36" stroke="#00d4ff" stroke-width="1.5" stroke-opacity="0.55"/>
+        <line x1="750" y1="18" x2="750" y2="36" stroke="#00d4ff" stroke-width="1.5" stroke-opacity="0.55"/>
+        <line x1="917" y1="18" x2="917" y2="36" stroke="#00d4ff" stroke-width="1.5" stroke-opacity="0.55"/>
+        <!-- arrowheads -->
+        <polygon points="83,38 79,30 87,30"   fill="#00d4ff" fill-opacity="0.7"/>
+        <polygon points="250,38 246,30 254,30" fill="#00d4ff" fill-opacity="0.7"/>
+        <polygon points="417,38 413,30 421,30" fill="#00d4ff" fill-opacity="0.7"/>
+        <polygon points="583,38 579,30 587,30" fill="#00d4ff" fill-opacity="0.7"/>
+        <polygon points="750,38 746,30 754,30" fill="#00d4ff" fill-opacity="0.7"/>
+        <polygon points="917,38 913,30 921,30" fill="#00d4ff" fill-opacity="0.7"/>
+        <!-- label -->
+        <text x="500" y="14" text-anchor="middle" font-size="8" fill="#6b7280" font-family="monospace" letter-spacing="1.5">routes to</text>
+      </svg>
+    </div>
+
+    <!-- 11 specialists -->
+    <div class="agent-grid">
 
       <div class="agent-card indigo">
         <div class="agent-name">Bob</div>
         <div class="agent-badge"><span></span>Architect</div>
         <div class="agent-role">Blueprinter before the build begins.</div>
-        <div class="agent-why">Designs system structure, integration, and data flow so implementation is clean and scalable.</div>
       </div>
 
       <div class="agent-card green">
         <div class="agent-name">Eric</div>
         <div class="agent-badge"><span></span>Coder</div>
         <div class="agent-role">Builds what moves and keeps it practical.</div>
-        <div class="agent-why">Writes the code, refactors the logic, and makes sure working software is the outcome.</div>
       </div>
 
       <div class="agent-card sky">
         <div class="agent-name">Marlo</div>
         <div class="agent-badge"><span></span>UX</div>
         <div class="agent-role">Designs interfaces and flows for humans.</div>
-        <div class="agent-why">Ensures solutions are usable, accessible, and aligned with real user behavior.</div>
       </div>
 
       <div class="agent-card purple">
         <div class="agent-name">Paulien</div>
         <div class="agent-badge"><span></span>Planner</div>
         <div class="agent-role">Turns chaos into a delivery plan.</div>
-        <div class="agent-why">Breaks work into steps, defines done criteria, and keeps the squad moving on the right priorities.</div>
       </div>
 
       <div class="agent-card amber">
         <div class="agent-name">Vera</div>
         <div class="agent-badge"><span></span>Quality</div>
-        <div class="agent-role">The gatekeeper for every delivery.</div>
-        <div class="agent-why">Checks tests, edge cases, correctness, and prevents risky work from shipping.</div>
+        <div class="agent-role">Gatekeeper for every delivery.</div>
       </div>
 
       <div class="agent-card teal">
         <div class="agent-name">Athanasios</div>
         <div class="agent-badge"><span></span>Research</div>
         <div class="agent-role">Finds the hidden answers.</div>
-        <div class="agent-why">Digs into requirements, competitors, and tradeoffs so the squad avoids repeated mistakes.</div>
       </div>
 
       <div class="agent-card red">
         <div class="agent-name">Kryptonite</div>
         <div class="agent-badge"><span></span>Red team</div>
         <div class="agent-role">Challenges assumptions before you build.</div>
-        <div class="agent-why">Surfaces flaws, risks, and blind spots so plans are stronger before execution.</div>
       </div>
 
       <div class="agent-card indigo">
         <div class="agent-name">Kevin</div>
         <div class="agent-badge"><span></span>Reports</div>
         <div class="agent-role">Turns work into stakeholder-ready summaries.</div>
-        <div class="agent-why">Creates clear status, rationale, and decision records for sponsors and teams.</div>
       </div>
 
       <div class="agent-card amber">
         <div class="agent-name">G</div>
         <div class="agent-badge"><span></span>Finance</div>
         <div class="agent-role">Keeps economics visible.</div>
-        <div class="agent-why">Evaluates cost, value, pricing, and whether the solution makes sense financially.</div>
       </div>
 
       <div class="agent-card green">
         <div class="agent-name">Coach</div>
         <div class="agent-badge"><span></span>Performance</div>
         <div class="agent-role">Tracks team health and process habits.</div>
-        <div class="agent-why">After every delivery, Coach checks whether the squad learned the right lesson and whether the next session can be smoother.</div>
       </div>
 
       <div class="agent-card blue avanade-card">
         <div class="agent-name">Nexus</div>
         <div class="agent-badge"><span></span>Avanade</div>
-        <div class="agent-role">Industry practice, department access, and platform strategy.</div>
-        <div class="agent-why">Knows Avanade domain expertise, practice-level access, and the right Azure/Fabric/Power Platform patterns for sales and delivery.</div>
+        <div class="agent-role">Industry practice and platform strategy.</div>
       </div>
 
     </div>
