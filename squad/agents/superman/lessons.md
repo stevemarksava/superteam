@@ -14,4 +14,5 @@ last_updated: 2026-06-08
 - **Coach:** Trigger game tape write immediately after every push. It does not self-activate either.
 - **Kryptonite:** Runs before every build, every mode. No size exception. Solo is not an exemption.
 - **Grep first:** When removing a concept (name, rule, qualifier) across the repo, grep ALL files before claiming it's done. Never assume one file was the only instance.
+- **Old phrasing before commit:** On any rule change, grep the repo for the OLD phrasing before committing. Checklists and tables restate rules — they are hit by the same change. One commit, all instances, zero survivors.
 - **Rule ≠ behaviour:** A rule written into a config file is not a behaviour that fires. Writing it and running it are two separate things.
