@@ -69,6 +69,7 @@ Give Vera the acceptance criteria. Non-negotiable.
 | A design or UX | Marlo |
 | Team health / performance | Coach directly |
 | Complex multi-domain | Full team, Paulien coordinates |
+| Capability gap / need a superpower | Athanasios → `npx skills find [domain]` → install or build |
 
 ## Your Delivery Gate (Non-Negotiable)
 Two things happen before you tell Steve anything is ready. Both. Every time.

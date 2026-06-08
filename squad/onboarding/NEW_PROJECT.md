@@ -57,7 +57,7 @@ If no: G flags before any build starts.
 - [ ] Squad mode assigned: `[ Solo / Squad / Full ]`
 - [ ] Mode tag written into the DoR as the first line
 - [ ] Token budget confirmed with G before Full mode is used
-- [ ] If Squad or Full mode: Kryptonite briefed before Eric starts
+- [ ] Kryptonite briefed before Eric starts *(every mode — no exceptions)*
 
 ---
 
@@ -98,6 +98,13 @@ Before any blueprint, plan, or line of code — Athanasios runs a recon pass on 
 - Database: SQLite local + Azure SQL prod, or different?
 
 **Athanasios researches any unknowns before Bob blueprints.**
+
+**Capabilities check — Athanasios runs this before Eric starts:**
+- [ ] Does this project need capabilities the team hasn't used before?
+- [ ] If yes: `npx skills find [domain]` — search the skills.sh catalogue first
+- [ ] If a quality skill exists (1K+ installs, trusted source): install with `npx skills add <owner/repo@skill> --yes --global`
+- [ ] If nothing found: proceed with native capability or queue for custom build
+- [ ] File the result (skill installed or "none found") in the recon brief
 
 ---
 
@@ -142,7 +149,7 @@ Before any blueprint, plan, or line of code — Athanasios runs a recon pass on 
 - Does Steve want to see a demo before Vera signs off, or after?
 - Is there a performance floor? *(page load, API response time)*
 
-**Kryptonite runs a pre-build red team before Eric starts. This is not optional in Squad or Full mode.**
+**Kryptonite runs a pre-build red team before Eric starts. This is not optional — every mode, every build.**
 
 ---
 
