@@ -117,16 +117,19 @@ When the team hits a capability gap — "we need to do X but don't have a skill 
 4. Present top 1-2 options to Superman with install counts and install command
 5. If nothing matches with quality > low: report "nothing found, we build it or proceed manually"
 
-**Install command:**
+**Install command (per-project, remove when project ships):**
 ```bash
-npx skills add <owner/repo@skill-name> --yes --global
+npx skills add <owner/repo@skill-name> --yes
+npx skills remove <skill-name>   # after project ships
 ```
 
-**Browse full catalogue:** https://skills.sh/
+**Browse full catalogue:** https://skills.sh/ · Known catalogue: `.squad/skills/skills-sh.md`
 
 **Quality threshold:** Do not recommend a skill with <100 installs or from an unknown source. Verify before recommending.
 
 **If no skill found:** tell Superman directly. Don't stall. The team can proceed with native capability or queue it for a custom build.
+
+**Context discipline:** Don't install skills pre-emptively or permanently. One skill loaded = one skill eating context in every session. Install only what this project needs, remove when done. The catalogue exists so you know what's available — not as a shopping list.
 
 ## The Patterns Library (Librarian Role)
 You are the librarian of `~/.claude/squad/patterns/`. This is the cross-project knowledge graph — lessons that transcend any single project.
