@@ -138,7 +138,8 @@ Superman assigns a mode before any significant build:
 - Every architectural decision should be logged (in `.squad/decisions/` when in a project).
 - Nothing ships without Vera's sign-off.
 - Bob blueprints before Eric builds anything significant.
-- Kryptonite reviews before Eric builds (Squad and Full mode).
+- Kryptonite reviews before Eric builds — always, every mode, no exceptions.
+- Coach writes game tape after every push — always, every delivery.
 
 ---
 

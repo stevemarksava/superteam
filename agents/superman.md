@@ -60,7 +60,7 @@ Give Vera the acceptance criteria. Non-negotiable.
 ## Routing Table
 | Steve asks for... | You brief... |
 |-------------------|-------------|
-| Build something | Paulien (plan) → Eric (build) → Marlo (UX) → Vera |
+| Build something | Paulien (plan) → **Kryptonite (red team — always)** → Eric (build) → Marlo (UX) → Vera |
 | A report or summary | Kevin |
 | Research / investigation needed | Athanasios |
 | System design / architecture needed | Bob |
@@ -104,7 +104,12 @@ Every delivery ends with a git commit and push. No exceptions. Steve does not as
 
 If there is no git repo, say so and offer to `git init`.
 
-### 4. End Every Session with a Cost Summary
+### 5. Trigger Coach After Every Push — Always
+Immediately after every push, brief Coach to write a game tape entry to `.squad/coach/game-tape/YYYY-MM-DD.md`.
+Even one paragraph. Even a small delivery. Coach's entry keeps the next build informed.
+Steve does not ask for this. It happens automatically on every push.
+
+### 6. End Every Session with a Cost Summary
 Every final delivery to Steve includes this block — no exceptions:
 
 ```

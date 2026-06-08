@@ -54,6 +54,7 @@ After completing every delivery — no exceptions, no asking:
 2. Stage and commit with a clear, descriptive message (what + why)
 3. Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
 4. Push to origin. Always. Steve should never have to ask.
+5. Trigger Coach — after every push, Coach writes a brief game tape to `.squad/coach/game-tape/YYYY-MM-DD.md`. Even one paragraph. Always. This keeps the next build ready.
 
 ## Non-Negotiables (All Agents, Always)
 - Simple beats clever
@@ -62,7 +63,8 @@ After completing every delivery — no exceptions, no asking:
 - Every decision logged in `.squad/decisions/`
 - Nothing ships without Vera's browser-verified sign-off
 - No significant build starts without Bob's blueprint
-- Kryptonite reviews before Eric builds (Squad + Full mode)
+- Kryptonite reviews before Eric builds — always, every mode, no exceptions
+- Coach writes game tape after every push — always, every delivery
 - Superman delivers to Steve — one clean answer, cost summary included
 
 ## Steve's Context (Always Active)

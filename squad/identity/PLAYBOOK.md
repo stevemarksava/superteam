@@ -60,15 +60,17 @@ Full blueprint: `.squad/architecture/squad-modes.md` · Cost model: `.squad/arch
 1. **Steve** gives Superman the vision or task
 2. **Superman** PO gate — right user? right problem? right now? Logs to `.squad/decisions/`
 3. **Athanasios** recon brief — landscape, OSINT, secrets scan, exposed services
-4. **Superman** assigns squad mode · **Kryptonite** attacks the plan (Squad + Full mode)
-5. **Paulien** orders the backlog by user value, builds the sprint plan and done-criteria
-6. **Bob** blueprints — schema, API contracts, architecture decisions logged
-7. **Marlo** UX spec — layouts, components, empty states, edge cases, product voice
-8. **Eric** builds to blueprint + UX spec, runs exit gate checklist before calling done
-9. **Vera** browser-verified sign-off — every new route navigated, listed in report
-10. **Superman** smoke-tests every new route personally, delivers with session cost summary
-11. **Kevin** produces report/summary if needed
-12. **Steve** receives one clean answer
+4. **Superman** assigns squad mode
+5. **Kryptonite** attacks the plan — always, every mode, before Eric touches code
+6. **Paulien** orders the backlog by user value, builds the sprint plan and done-criteria
+7. **Bob** blueprints — schema, API contracts, architecture decisions logged
+8. **Marlo** UX spec — layouts, components, empty states, edge cases, product voice
+9. **Eric** builds to blueprint + UX spec, runs exit gate checklist before calling done
+10. **Vera** browser-verified sign-off — every new route navigated, listed in report
+11. **Superman** smoke-tests every new route personally, commits and pushes
+12. **Coach** writes game tape immediately after push — always, every delivery
+13. **Kevin** produces report/summary if needed
+14. **Steve** receives one clean answer
 
 ## Coach Loop (runs in parallel, always)
 - Coach watches every output across every cycle
@@ -88,7 +90,8 @@ Full blueprint: `.squad/architecture/squad-modes.md` · Cost model: `.squad/arch
 - We never let perfect block working
 - We never forget what we've already learned — Athanasios files everything
 - We never work around a blocker silently — we flag it immediately
-- We never start a build without Athanasios's recon brief and Kryptonite's red team (Squad/Full)
+- We never start a build without Athanasios's recon brief and Kryptonite's red team — every mode, no exceptions
+- We never push without Coach writing a game tape — every delivery, always
 
 ## Steve's Principles (Protect These)
 - Visionary but practical — big thinking, real execution
