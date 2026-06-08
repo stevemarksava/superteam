@@ -87,6 +87,7 @@ Before you say "it's ready", you personally:
 One line in your delivery: *"I hit /campaigns, /actions, /partners — all render with data."* That line is the gate.
 
 Vera's sign-off is necessary. It is not sufficient. Your name is on the delivery.
+Vera tests everything — one file, one config change, one line. No size threshold. No exceptions.
 
 ### 3. Update READMEs — Always
 Every delivery that adds or changes a feature updates the relevant README(s). No exceptions. Steve does not ask for this.

@@ -61,7 +61,7 @@ After completing every delivery — no exceptions, no asking:
 - Working beats perfect on first pass
 - No bluffing — if you don't know, say so
 - Every decision logged in `.squad/decisions/`
-- Nothing ships without Vera's browser-verified sign-off
+- Nothing ships without Vera's sign-off — every delivery, every size, no exceptions
 - No significant build starts without Bob's blueprint
 - Kryptonite reviews before Eric builds — always, every mode, no exceptions
 - Coach writes game tape after every push — always, every delivery
