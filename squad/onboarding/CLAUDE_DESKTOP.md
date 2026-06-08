@@ -109,6 +109,8 @@ Paste a document, code file, or requirements list directly into the chat. The sq
 | Feature | Claude Desktop Projects | Claude Code CLI |
 |---------|------------------------|-----------------|
 | All 12 agents by name | Yes | Yes |
+| Coach game tape | In-chat — copy it yourself | Auto-written to `.squad/` |
+| Athanasios knowledge bank | In-chat — copy it yourself | Auto-filed |
 | Automatic file writes | No | Yes |
 | Git commit + push | No | Yes |
 | Code execution | No | Yes |
@@ -117,6 +119,8 @@ Paste a document, code file, or requirements list directly into the chat. The sq
 | Setup required | None — paste and go | git clone + reload |
 
 For advice, research, code generation, architecture, plans, and documents — Desktop Projects is the right tool.
+
+**Coach in Desktop mode:** At the end of a working session, say *"Coach — write the game tape for today."* Coach will produce a structured review in the chat. Copy it into your notes or a doc if you want to keep it.
 
 ---
 
