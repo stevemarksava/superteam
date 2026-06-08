@@ -1,0 +1,1916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Superteam — FDE Training</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── Variables ─────────────────────────────────────────────── */
+    :root {
+      --bg:        #0b0f19;
+      --bg-card:   #111827;
+      --bg-card-2: #161d2e;
+      --border:    rgba(255,255,255,0.07);
+      --fg:        #f1f5f9;
+      --fg-muted:  #94a3b8;
+      --accent:    #00d4ff;
+      --accent-2:  #6366f1;
+      --accent-3:  #10b981;
+      --accent-warn: #f59e0b;
+      --avanade:       #E85D0C;
+      --avanade-light: #FF9500;
+      --superman-red:  #CC0000;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    .avanade-text {
+      background: linear-gradient(135deg, #FF9500 0%, #E85D0C 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .team-red {
+      color: var(--superman-red);
+      -webkit-text-fill-color: var(--superman-red);
+    }
+
+    /* ── Nav Buttons ───────────────────────────────────────────── */
+    .nav-btn {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--fg-muted);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      z-index: 200;
+      opacity: 0.35;
+      user-select: none;
+      line-height: 1;
+    }
+    .nav-btn:hover { opacity: 1; background: rgba(255,255,255,0.1); color: var(--fg); }
+    .nav-btn:disabled { opacity: 0.08; pointer-events: none; }
+    #btn-prev { left: 0.75rem; }
+    #btn-next { right: 0.75rem; }
+
+    /* ── Fullscreen Button ────────────────────────────────────── */
+    #fullscreen-btn {
+      position: fixed;
+      bottom: 1.6rem;
+      left: 2rem;
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 4px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--fg-muted);
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      z-index: 200;
+      opacity: 0.4;
+    }
+    #fullscreen-btn:hover { opacity: 1; border-color: rgba(255,255,255,0.3); color: var(--fg); }
+
+    /* ── Reset ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Slide Shell ───────────────────────────────────────────── */
+    .slide {
+      position: absolute;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3.5rem 5vw;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+    .slide.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    /* ── Slide Counter ─────────────────────────────────────────── */
+    #counter {
+      position: fixed;
+      bottom: 1.75rem;
+      right: 2rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--fg-muted);
+      letter-spacing: 0.08em;
+      font-variant-numeric: tabular-nums;
+      z-index: 100;
+    }
+
+    /* ── Navigation hint (slide 1 only) ───────────────────────── */
+    .nav-hint {
+      position: fixed;
+      bottom: 1.75rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.75rem;
+      color: var(--fg-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .nav-hint.visible { opacity: 1; }
+    .nav-hint .key {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.5rem;
+      height: 1.5rem;
+      border: 1px solid var(--fg-muted);
+      border-radius: 4px;
+      font-size: 0.65rem;
+    }
+
+    /* ── Background texture ────────────────────────────────────── */
+    .slide::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 80% 20%, rgba(232,93,12,0.04) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 10% 80%, rgba(99,102,241,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    /* ── Shared layout helpers ─────────────────────────────────── */
+    .slide-header {
+      width: 100%;
+      max-width: 80rem;
+      margin-bottom: 1.75rem;
+    }
+    .slide-header .eyebrow {
+      font-size: clamp(0.6rem, 0.9vw, 0.75rem);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--avanade-light);
+      margin-bottom: 0.4rem;
+    }
+    .slide-header h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    .slide-header .sub {
+      margin-top: 0.5rem;
+      font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+      color: var(--fg-muted);
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .accent-line {
+      width: 3.5rem;
+      height: 3px;
+      background: var(--avanade);
+      border-radius: 2px;
+      margin-bottom: 1.25rem;
+    }
+    .accent-line.blue   { background: var(--accent); }
+    .accent-line.indigo { background: var(--accent-2); }
+    .accent-line.green  { background: var(--accent-3); }
+    .accent-line.amber  { background: var(--accent-warn); }
+    .accent-line.red    { background: #ef4444; }
+
+    /* ══════════════════════════════════════════════════════════════
+       SLIDE 1 — The Mission
+    ══════════════════════════════════════════════════════════════ */
+    #slide-1 {
+      background:
+        radial-gradient(ellipse 80% 60% at 60% -10%, rgba(232,93,12,0.14) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 0% 100%, rgba(99,102,241,0.1) 0%, transparent 50%),
+        var(--bg);
+      text-align: left;
+      align-items: flex-start;
+      justify-content: center;
+      padding-left: clamp(3rem, 8vw, 8rem);
+    }
+    #slide-1 .eyebrow {
+      font-size: clamp(0.7rem, 1.2vw, 0.9rem);
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--avanade-light);
+      margin-bottom: 1rem;
+    }
+    #slide-1 h1 {
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #ffffff 30%, var(--avanade-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.25rem;
+    }
+    #slide-1 .mission-sub {
+      font-size: clamp(1rem, 2.2vw, 1.5rem);
+      font-weight: 400;
+      color: var(--fg-muted);
+      margin-bottom: 2.5rem;
+      max-width: 56rem;
+      line-height: 1.5;
+    }
+    #slide-1 .mission-sub strong {
+      color: var(--fg);
+      font-weight: 600;
+    }
+    #slide-1 .bullets {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin-bottom: 2.5rem;
+    }
+    #slide-1 .bullet {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+      font-size: clamp(0.95rem, 1.7vw, 1.2rem);
+      font-weight: 500;
+      color: var(--fg);
+      line-height: 1.4;
+    }
+    #slide-1 .bullet-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      background: var(--avanade);
+      flex-shrink: 0;
+      margin-top: 0.45rem;
+    }
+    #slide-1 .bottom-label {
+      font-size: clamp(0.65rem, 0.9vw, 0.78rem);
+      font-weight: 500;
+      color: var(--fg-muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.6;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SLIDE 2 — How It Works
+    ══════════════════════════════════════════════════════════════ */
+    #slide-2 .flow-wrap {
+      width: 100%;
+      max-width: 72rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.5rem;
+    }
+    #slide-2 .flow-diagram {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      width: 100%;
+      justify-content: center;
+    }
+    .flow-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .flow-node {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.1rem 1.8rem;
+      text-align: center;
+    }
+    .flow-node .node-name {
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      font-weight: 700;
+      color: var(--fg);
+    }
+    .flow-node-label {
+      font-size: clamp(0.65rem, 0.9vw, 0.75rem);
+      color: var(--fg-muted);
+      text-align: center;
+      letter-spacing: 0.04em;
+      max-width: 11rem;
+      line-height: 1.4;
+    }
+    .flow-node.superman-node {
+      border-color: rgba(255,149,0,0.4);
+      background: linear-gradient(135deg, rgba(255,149,0,0.1), rgba(17,24,39,0.95));
+      box-shadow: 0 0 30px rgba(232,93,12,0.18), 0 0 60px rgba(232,93,12,0.08);
+      padding: 1.4rem 2.4rem;
+    }
+    .flow-node.superman-node .node-name {
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    }
+    .flow-arrow {
+      font-size: 1.5rem;
+      color: var(--fg-muted);
+      padding: 0 1.5rem;
+      padding-bottom: 1.8rem; /* align with node centre, accounting for label below */
+      opacity: 0.5;
+    }
+    #slide-2 .flow-note {
+      font-size: clamp(1rem, 2vw, 1.35rem);
+      font-weight: 500;
+      color: var(--fg-muted);
+      text-align: center;
+    }
+    #slide-2 .flow-note strong {
+      color: var(--fg);
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SLIDE 3 — Your Squad
+    ══════════════════════════════════════════════════════════════ */
+    #slide-3 {
+      justify-content: flex-start;
+      padding-top: 2.25rem;
+    }
+    #slide-3 .slide-header {
+      margin-bottom: 1.25rem;
+    }
+    #slide-3 .agent-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.55rem;
+      width: 100%;
+      max-width: 88rem;
+    }
+    .sq-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .sq-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      border-radius: 10px 10px 0 0;
+    }
+    .sq-card.c-blue::before   { background: var(--accent); }
+    .sq-card.c-indigo::before { background: var(--accent-2); }
+    .sq-card.c-green::before  { background: var(--accent-3); }
+    .sq-card.c-amber::before  { background: var(--accent-warn); }
+    .sq-card.c-red::before    { background: #ef4444; }
+    .sq-card.c-teal::before   { background: #2dd4bf; }
+    .sq-card.c-sky::before    { background: #38bdf8; }
+    .sq-card.c-purple::before { background: #a855f7; }
+    .sq-card.c-orange::before { background: var(--avanade); }
+    .sq-card.c-rose::before   { background: #fb7185; }
+
+    .sq-card.superman-highlight {
+      background: linear-gradient(135deg, rgba(0,212,255,0.07), rgba(99,102,241,0.05));
+      border-color: rgba(0,212,255,0.18);
+    }
+    .sq-card.avanade-highlight {
+      background: linear-gradient(135deg, rgba(255,149,0,0.09), rgba(17,24,39,0.95));
+      border-color: rgba(255,149,0,0.25);
+    }
+
+    .sq-card .sq-name {
+      font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+      font-weight: 700;
+      color: var(--fg);
+    }
+    .sq-card .sq-role {
+      font-size: clamp(0.65rem, 0.85vw, 0.75rem);
+      color: var(--fg-muted);
+      line-height: 1.4;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SLIDE 4 — Before the Workshop
+    ══════════════════════════════════════════════════════════════ */
+    #slide-4 .content-wrap {
+      width: 100%;
+      max-width: 78rem;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    #slide-4 .steps-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .big-step {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .big-step:last-child { border-bottom: none; }
+    .big-step .bsn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: rgba(232,93,12,0.12);
+      border: 1px solid rgba(232,93,12,0.3);
+      color: var(--avanade-light);
+      font-size: 0.8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+    .big-step .bs-text {
+      font-size: clamp(0.88rem, 1.35vw, 1.05rem);
+      color: var(--fg);
+      line-height: 1.5;
+    }
+    #slide-4 .prompt-box {
+      background: var(--bg-card);
+      border: 1px solid rgba(0,212,255,0.15);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    #slide-4 .prompt-box .pb-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    #slide-4 .prompt-box .pb-text {
+      font-family: var(--font-mono);
+      font-size: clamp(0.8rem, 1.1vw, 0.92rem);
+      color: var(--fg);
+      line-height: 1.7;
+      white-space: pre-wrap;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SLIDE 5 — In the Workshop
+    ══════════════════════════════════════════════════════════════ */
+    #slide-5 .content-wrap {
+      width: 100%;
+      max-width: 80rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    #slide-5 .cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    #slide-5 .col-head {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 0.85rem;
+    }
+    #slide-5 .col-head.left  { color: var(--fg-muted); }
+    #slide-5 .col-head.right { color: var(--accent); }
+    #slide-5 .hear-item,
+    #slide-5 .say-item {
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      margin-bottom: 0.55rem;
+      font-size: clamp(0.8rem, 1.1vw, 0.9rem);
+      line-height: 1.5;
+    }
+    #slide-5 .hear-item {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      color: var(--fg-muted);
+      font-style: italic;
+    }
+    #slide-5 .say-item {
+      background: rgba(0,212,255,0.05);
+      border: 1px solid rgba(0,212,255,0.12);
+      color: var(--fg);
+      font-family: var(--font-mono);
+      font-size: clamp(0.72rem, 0.95vw, 0.82rem);
+    }
+    #slide-5 .bottom-note {
+      font-size: clamp(0.78rem, 1.1vw, 0.88rem);
+      color: var(--fg-muted);
+      text-align: center;
+      padding-top: 0.5rem;
+    }
+    #slide-5 .bottom-note strong {
+      color: var(--fg);
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SLIDE 6 — Quick Reference
+    ══════════════════════════════════════════════════════════════ */
+    #slide-6 .ref-wrap {
+      width: 100%;
+      max-width: 72rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    #slide-6 .ref-table {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .ref-row {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 0.9rem 1.4rem;
+      border-bottom: 1px solid var(--border);
+      gap: 1rem;
+    }
+    .ref-row:last-child { border-bottom: none; }
+    .ref-row:nth-child(odd) { background: rgba(255,255,255,0.015); }
+    .ref-row .ref-scenario {
+      font-size: clamp(0.85rem, 1.3vw, 1rem);
+      font-weight: 500;
+      color: var(--fg);
+    }
+    .ref-row .ref-arrow {
+      color: var(--avanade);
+      font-size: 1rem;
+      opacity: 0.7;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .ref-row .ref-cmd {
+      font-family: var(--font-mono);
+      font-size: clamp(0.72rem, 1vw, 0.85rem);
+      color: var(--accent);
+      background: rgba(0,212,255,0.05);
+      border: 1px solid rgba(0,212,255,0.1);
+      border-radius: 6px;
+      padding: 0.35rem 0.75rem;
+      line-height: 1.5;
+    }
+    #slide-6 .ref-note {
+      font-size: clamp(0.75rem, 1vw, 0.82rem);
+      color: var(--fg-muted);
+      text-align: center;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SLIDE 7 — The PoC Sprint
+    ══════════════════════════════════════════════════════════════ */
+    #slide-7 .sprint-wrap {
+      width: 100%;
+      max-width: 80rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    #slide-7 .timeline {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 0;
+      width: 100%;
+    }
+    .tl-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      position: relative;
+    }
+    .tl-step::after {
+      content: '→';
+      position: absolute;
+      right: -0.65rem;
+      top: 1.1rem;
+      font-size: 1rem;
+      color: var(--fg-muted);
+      opacity: 0.4;
+      z-index: 1;
+    }
+    .tl-step:last-child::after { display: none; }
+    .tl-node {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      text-align: center;
+      width: 88%;
+    }
+    .tl-node .tl-agent {
+      font-size: clamp(0.85rem, 1.3vw, 1.05rem);
+      font-weight: 700;
+      color: var(--fg);
+      margin-bottom: 0.2rem;
+    }
+    .tl-node .tl-action {
+      font-size: clamp(0.65rem, 0.85vw, 0.72rem);
+      color: var(--fg-muted);
+      font-weight: 500;
+    }
+    .tl-time {
+      margin-top: 0.5rem;
+      font-size: clamp(0.6rem, 0.75vw, 0.68rem);
+      color: var(--fg-muted);
+      opacity: 0.7;
+      letter-spacing: 0.04em;
+    }
+    .tl-step.kryptonite .tl-node {
+      border-color: rgba(239,68,68,0.25);
+      background: rgba(239,68,68,0.05);
+    }
+    .tl-step.kryptonite .tl-agent { color: #ef4444; }
+    .tl-step.vera .tl-node {
+      border-color: rgba(245,158,11,0.25);
+      background: rgba(245,158,11,0.05);
+    }
+    .tl-step.vera .tl-agent { color: var(--accent-warn); }
+    #slide-7 .sprint-note {
+      background: rgba(239,68,68,0.06);
+      border: 1px solid rgba(239,68,68,0.15);
+      border-radius: 10px;
+      padding: 1rem 1.4rem;
+      font-size: clamp(0.82rem, 1.15vw, 0.92rem);
+      color: var(--fg-muted);
+      line-height: 1.6;
+    }
+    #slide-7 .sprint-note strong {
+      color: var(--fg);
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SLIDE 8 — The Microsoft Stack
+    ══════════════════════════════════════════════════════════════ */
+    #slide-8 .stack-wrap {
+      width: 100%;
+      max-width: 80rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    #slide-8 .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.7rem;
+    }
+    .stack-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.9rem 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .stack-card .sc-trigger {
+      font-size: clamp(0.8rem, 1.1vw, 0.9rem);
+      font-weight: 700;
+      color: var(--fg);
+    }
+    .stack-card .sc-detail {
+      font-size: clamp(0.65rem, 0.85vw, 0.74rem);
+      color: var(--fg-muted);
+      line-height: 1.45;
+    }
+    #slide-8 .nexus-call {
+      background: linear-gradient(135deg, rgba(255,149,0,0.08), rgba(17,24,39,0.9));
+      border: 1px solid rgba(255,149,0,0.22);
+      border-radius: 10px;
+      padding: 1rem 1.4rem;
+      font-size: clamp(0.82rem, 1.1vw, 0.9rem);
+      color: var(--fg-muted);
+    }
+    #slide-8 .nexus-call .nc-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--avanade-light);
+      margin-bottom: 0.4rem;
+    }
+    #slide-8 .nexus-call .nc-cmd {
+      font-family: var(--font-mono);
+      font-size: clamp(0.78rem, 1.05vw, 0.88rem);
+      color: var(--fg);
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SLIDE 9 — Quality Gate
+    ══════════════════════════════════════════════════════════════ */
+    #slide-9 .gate-wrap {
+      width: 100%;
+      max-width: 76rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    #slide-9 .verdicts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .verdict-card {
+      border-radius: 14px;
+      padding: 1.75rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      text-align: center;
+    }
+    .verdict-card.v-pass {
+      background: rgba(16,185,129,0.07);
+      border: 1px solid rgba(16,185,129,0.25);
+    }
+    .verdict-card.v-conditional {
+      background: rgba(245,158,11,0.07);
+      border: 1px solid rgba(245,158,11,0.25);
+    }
+    .verdict-card.v-fail {
+      background: rgba(239,68,68,0.07);
+      border: 1px solid rgba(239,68,68,0.25);
+    }
+    .verdict-card .v-label {
+      font-size: clamp(0.85rem, 1.3vw, 1.05rem);
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .verdict-card.v-pass .v-label       { color: var(--accent-3); }
+    .verdict-card.v-conditional .v-label{ color: var(--accent-warn); }
+    .verdict-card.v-fail .v-label       { color: #ef4444; }
+    .verdict-card .v-desc {
+      font-size: clamp(0.85rem, 1.2vw, 1rem);
+      color: var(--fg-muted);
+      line-height: 1.5;
+    }
+    #slide-9 .vera-line {
+      text-align: center;
+      font-size: clamp(1rem, 1.8vw, 1.3rem);
+      font-weight: 500;
+      color: var(--fg-muted);
+      line-height: 1.6;
+    }
+    #slide-9 .vera-line strong {
+      color: var(--fg);
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SLIDE 10 — The Red Team
+    ══════════════════════════════════════════════════════════════ */
+    #slide-10 .red-wrap {
+      width: 100%;
+      max-width: 80rem;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    #slide-10 .challenges {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    #slide-10 .ch-head {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #ef4444;
+      margin-bottom: 1rem;
+    }
+    .challenge-item {
+      display: flex;
+      gap: 0.85rem;
+      align-items: flex-start;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: clamp(0.85rem, 1.2vw, 0.98rem);
+      color: var(--fg);
+      line-height: 1.5;
+    }
+    .challenge-item:last-child { border-bottom: none; }
+    .challenge-item .ci-dot {
+      width: 0.45rem;
+      height: 0.45rem;
+      border-radius: 50%;
+      background: #ef4444;
+      flex-shrink: 0;
+      margin-top: 0.5rem;
+      opacity: 0.7;
+    }
+    #slide-10 .pull-quote {
+      background: rgba(239,68,68,0.06);
+      border: 1px solid rgba(239,68,68,0.18);
+      border-radius: 14px;
+      padding: 2rem 1.75rem;
+      text-align: center;
+    }
+    #slide-10 .pull-quote .pq-open {
+      font-size: 3rem;
+      line-height: 0.5;
+      color: #ef4444;
+      opacity: 0.4;
+      margin-bottom: 0.5rem;
+    }
+    #slide-10 .pull-quote .pq-text {
+      font-size: clamp(1rem, 1.8vw, 1.35rem);
+      font-weight: 600;
+      color: var(--fg);
+      line-height: 1.5;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SLIDE 11 — Growing Smarter
+    ══════════════════════════════════════════════════════════════ */
+    #slide-11 .learn-wrap {
+      width: 100%;
+      max-width: 78rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.25rem;
+    }
+    #slide-11 .learn-flow {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .learn-step {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      position: relative;
+    }
+    .learn-step::after {
+      content: '→';
+      position: absolute;
+      right: -1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.1rem;
+      color: var(--fg-muted);
+      opacity: 0.4;
+    }
+    .learn-step:last-child::after { display: none; }
+    .learn-step .ls-num {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-warn);
+    }
+    .learn-step .ls-title {
+      font-size: clamp(0.9rem, 1.4vw, 1.05rem);
+      font-weight: 700;
+      color: var(--fg);
+      line-height: 1.3;
+    }
+    .learn-step .ls-detail {
+      font-size: clamp(0.75rem, 0.95vw, 0.82rem);
+      color: var(--fg-muted);
+      line-height: 1.5;
+    }
+    #slide-11 .key-line {
+      text-align: center;
+      font-size: clamp(1rem, 1.8vw, 1.3rem);
+      font-weight: 600;
+      color: var(--fg-muted);
+    }
+    #slide-11 .key-line strong {
+      color: var(--fg);
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SLIDE 12 — Handing Over
+    ══════════════════════════════════════════════════════════════ */
+    #slide-12 .handover-wrap {
+      width: 100%;
+      max-width: 78rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+    #slide-12 .checklist {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .check-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 0.9rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .check-row:last-child { border-bottom: none; }
+    .check-row:nth-child(odd) { background: rgba(255,255,255,0.015); }
+    .check-icon {
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: 50%;
+      background: rgba(16,185,129,0.15);
+      border: 1.5px solid rgba(16,185,129,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+    .check-icon svg {
+      width: 0.6rem;
+      height: 0.6rem;
+      stroke: var(--accent-3);
+      stroke-width: 2.5;
+      fill: none;
+    }
+    .check-row .cr-text {
+      font-size: clamp(0.85rem, 1.2vw, 0.98rem);
+      color: var(--fg);
+      line-height: 1.45;
+    }
+    .check-row .cr-text strong {
+      color: var(--accent-3);
+    }
+    #slide-12 .handover-note {
+      text-align: center;
+      font-size: clamp(0.85rem, 1.3vw, 1rem);
+      color: var(--fg-muted);
+      line-height: 1.6;
+    }
+    #slide-12 .handover-note strong {
+      color: var(--fg);
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SLIDE 13 — Emergency Setup
+    ══════════════════════════════════════════════════════════════ */
+    #slide-13 .emergency-wrap {
+      width: 100%;
+      max-width: 72rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    #slide-13 .em-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .em-step {
+      display: flex;
+      gap: 1.1rem;
+      align-items: flex-start;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .em-step:last-child { border-bottom: none; }
+    .em-step .esn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 1.9rem;
+      height: 1.9rem;
+      border-radius: 50%;
+      background: rgba(0,212,255,0.08);
+      border: 1px solid rgba(0,212,255,0.2);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 0.05rem;
+    }
+    .em-step .est {
+      font-size: clamp(0.85rem, 1.2vw, 0.98rem);
+      color: var(--fg);
+      line-height: 1.5;
+    }
+    .em-step .est code {
+      font-family: var(--font-mono);
+      font-size: 0.85em;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.1em 0.4em;
+      color: var(--accent);
+    }
+    #slide-13 .em-right {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    #slide-13 .timing-note {
+      background: rgba(0,212,255,0.05);
+      border: 1px solid rgba(0,212,255,0.12);
+      border-radius: 10px;
+      padding: 1.1rem 1.25rem;
+    }
+    #slide-13 .timing-note .tn-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    #slide-13 .timing-note .tn-text {
+      font-size: clamp(0.82rem, 1.1vw, 0.9rem);
+      color: var(--fg-muted);
+      line-height: 1.5;
+    }
+    #slide-13 .timing-note .tn-time {
+      font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+      font-weight: 700;
+      color: var(--fg);
+      margin-top: 0.4rem;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SLIDE 14 — Your First Delivery
+    ══════════════════════════════════════════════════════════════ */
+    #slide-14 {
+      background:
+        radial-gradient(ellipse 70% 50% at 60% -10%, rgba(0,212,255,0.09) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 0% 100%, rgba(232,93,12,0.07) 0%, transparent 50%),
+        var(--bg);
+      text-align: center;
+    }
+    #slide-14 .s14-eyebrow {
+      font-size: clamp(0.7rem, 1vw, 0.85rem);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    #slide-14 h2 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 0.6rem;
+    }
+    #slide-14 .s14-sub {
+      font-size: clamp(0.95rem, 1.6vw, 1.2rem);
+      color: var(--fg-muted);
+      margin-bottom: 2rem;
+    }
+    #slide-14 .first-prompt {
+      background: var(--bg-card);
+      border: 1px solid rgba(0,212,255,0.2);
+      border-radius: 14px;
+      padding: 1.75rem 2.5rem;
+      max-width: 52rem;
+      margin: 0 auto;
+      box-shadow: 0 0 40px rgba(0,212,255,0.06);
+    }
+    #slide-14 .first-prompt .fp-text {
+      font-family: var(--font-mono);
+      font-size: clamp(0.88rem, 1.4vw, 1.05rem);
+      color: var(--fg);
+      line-height: 1.7;
+      text-align: left;
+    }
+    #slide-14 .fp-after {
+      margin-top: 1.5rem;
+      font-size: clamp(0.88rem, 1.3vw, 1rem);
+      color: var(--fg-muted);
+    }
+    #slide-14 .fp-after strong {
+      color: var(--fg);
+    }
+    #slide-14 .fp-tip {
+      margin-top: 0.75rem;
+      font-size: clamp(0.78rem, 1vw, 0.85rem);
+      color: var(--fg-muted);
+      opacity: 0.75;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SLIDE 15 — Where Things Are
+    ══════════════════════════════════════════════════════════════ */
+    #slide-15 {
+      background:
+        radial-gradient(ellipse 60% 50% at 80% 20%, rgba(232,93,12,0.07) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 20% 80%, rgba(99,102,241,0.07) 0%, transparent 55%),
+        var(--bg);
+    }
+    #slide-15 .refs-wrap {
+      width: 100%;
+      max-width: 72rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    #slide-15 .ref-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+    }
+    .ref-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1rem;
+      align-items: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.85rem 1.1rem;
+    }
+    .ref-item .ri-name {
+      font-size: clamp(0.82rem, 1.1vw, 0.92rem);
+      font-weight: 600;
+      color: var(--fg);
+      white-space: nowrap;
+    }
+    .ref-item .ri-path {
+      font-family: var(--font-mono);
+      font-size: clamp(0.68rem, 0.9vw, 0.78rem);
+      color: var(--fg-muted);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .ref-item.ri-repo {
+      grid-column: 1 / -1;
+      border-color: rgba(255,149,0,0.2);
+      background: linear-gradient(135deg, rgba(255,149,0,0.07), var(--bg-card));
+    }
+    .ref-item.ri-repo .ri-path { color: var(--avanade-light); }
+    #slide-15 .final-note {
+      text-align: center;
+      font-size: clamp(0.82rem, 1.1vw, 0.9rem);
+      color: var(--fg-muted);
+    }
+    #slide-15 .final-note strong { color: var(--fg); }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SLIDE 1 — The Mission
+  ════════════════════════════════════════════════════════════ -->
+  <section class="slide active" id="slide-1">
+    <div class="eyebrow">Super<span class="team-red">team</span> Training</div>
+    <h1>Your Mission</h1>
+    <p class="mission-sub">
+      PoC on the fly. <strong>Client workshop today.</strong> Working demo in their hands tomorrow.
+    </p>
+    <div class="bullets">
+      <div class="bullet">
+        <div class="bullet-dot"></div>
+        <span>Prove Avanade's value during the sale — not after the contract</span>
+      </div>
+      <div class="bullet">
+        <div class="bullet-dot"></div>
+        <span>Move from concept to working demo within 24 hours</span>
+      </div>
+      <div class="bullet">
+        <div class="bullet-dot"></div>
+        <span>Deliver with AI at the centre of every build</span>
+      </div>
+    </div>
+    <div class="bottom-label">Forward Deployed Engineering &middot; Avanade &times; Microsoft</div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SLIDE 2 — How It Works
+  ════════════════════════════════════════════════════════════ -->
+  <section class="slide" id="slide-2">
+    <div class="slide-header" style="text-align:center; max-width:72rem;">
+      <div class="eyebrow">How It Works</div>
+      <h2>One Voice In</h2>
+      <p class="sub">You talk to Superman. He does the routing.</p>
+    </div>
+    <div class="flow-wrap">
+      <div class="flow-diagram">
+        <div class="flow-box">
+          <div class="flow-node">
+            <div class="node-name">You</div>
+          </div>
+          <div class="flow-node-label">Brief Superman</div>
+        </div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-box">
+          <div class="flow-node superman-node">
+            <div class="node-name"><span class="avanade-text">Superman</span></div>
+          </div>
+          <div class="flow-node-label">Routes &middot; Coordinates &middot; Delivers</div>
+        </div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-box">
+          <div class="flow-node">
+            <div class="node-name">The Squad</div>
+          </div>
+          <div class="flow-node-label">12 specialists, right person, right task</div>
+        </div>
+      </div>
+      <div class="flow-note">You don't manage the team. <strong>Superman does.</strong></div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SLIDE 3 — Your Squad
+  ════════════════════════════════════════════════════════════ -->
+  <section class="slide" id="slide-3">
+    <div class="slide-header">
+      <div class="eyebrow">The Roster</div>
+      <h2>12 Specialists</h2>
+      <p class="sub">Each one owns a specific role. Superman knows when to call who.</p>
+    </div>
+    <div class="agent-grid">
+
+      <div class="sq-card c-blue superman-highlight">
+        <div class="sq-name">Superman</div>
+        <div class="sq-role">Your lead. Routes everything. Owns delivery.</div>
+      </div>
+
+      <div class="sq-card c-indigo">
+        <div class="sq-name">Bob</div>
+        <div class="sq-role">Architect. Blueprints before anyone builds.</div>
+      </div>
+
+      <div class="sq-card c-green">
+        <div class="sq-name">Eric</div>
+        <div class="sq-role">Elite coder. Clean, fast, secure.</div>
+      </div>
+
+      <div class="sq-card c-sky">
+        <div class="sq-name">Marlo</div>
+        <div class="sq-role">UX designer. Thinks in user journeys.</div>
+      </div>
+
+      <div class="sq-card c-purple">
+        <div class="sq-name">Paulien</div>
+        <div class="sq-role">Planner. Ordered tasks, clear done-criteria.</div>
+      </div>
+
+      <div class="sq-card c-amber">
+        <div class="sq-name">Vera</div>
+        <div class="sq-role">Quality gate. Nothing ships without her sign-off.</div>
+      </div>
+
+      <div class="sq-card c-teal">
+        <div class="sq-name">Athanasios</div>
+        <div class="sq-role">Researcher. Goes deeper than anyone else would.</div>
+      </div>
+
+      <div class="sq-card c-red">
+        <div class="sq-name">Kryptonite</div>
+        <div class="sq-role">Red team. Attacks every plan before it's built.</div>
+      </div>
+
+      <div class="sq-card c-indigo">
+        <div class="sq-name">Kevin</div>
+        <div class="sq-role">Reports and docs. Readable by non-technical people.</div>
+      </div>
+
+      <div class="sq-card c-amber">
+        <div class="sq-name">G</div>
+        <div class="sq-role">Finance. No feature ships with undefined economics.</div>
+      </div>
+
+      <div class="sq-card c-green">
+        <div class="sq-name">Coach</div>
+        <div class="sq-role">Watches team performance. Writes game tape.</div>
+      </div>
+
+      <div class="sq-card c-orange avanade-highlight">
+        <div class="sq-name">Nexus</div>
+        <div class="sq-role">Azure &middot; M365 &middot; Power Platform &middot; Fabric specialist.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SLIDE 4 — Before the Workshop
+  ════════════════════════════════════════════════════════════ -->
+  <section class="slide" id="slide-4">
+    <div class="content-wrap">
+
+      <div class="steps-col">
+        <div class="slide-header" style="margin-bottom: 1.25rem;">
+          <div class="eyebrow">Before the Workshop</div>
+          <h2>Brief the Squad in 15 Minutes</h2>
+          <p class="sub">Before the client meeting. Do this first.</p>
+        </div>
+
+        <div class="big-step">
+          <div class="bsn">1</div>
+          <div class="bs-text">Tell Superman who the client is and what problem they have</div>
+        </div>
+        <div class="big-step">
+          <div class="bsn">2</div>
+          <div class="bs-text">Confirm the tech stack (Azure? M365? Custom?)</div>
+        </div>
+        <div class="big-step">
+          <div class="bsn">3</div>
+          <div class="bs-text">Set the squad mode: <em>Solo</em> for quick demos, <em>Squad</em> for feature builds</div>
+        </div>
+        <div class="big-step">
+          <div class="bsn">4</div>
+          <div class="bs-text">Superman runs the checklist. Agents align. No one starts until it's done.</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="prompt-box">
+          <div class="pb-label">Example prompt</div>
+          <div class="pb-text">"Superman &mdash; I'm preparing for a workshop with [Client].
+They need [X]. Stack is [Azure / M365 / custom].
+Brief the team for a PoC-on-the-fly."</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SLIDE 5 — In the Workshop
+  ════════════════════════════════════════════════════════════ -->
+  <section class="slide" id="slide-5">
+    <div class="content-wrap">
+      <div class="slide-header" style="margin-bottom:1rem;">
+        <div class="eyebrow">In the Workshop</div>
+        <h2>Capturing the Brief in Real Time</h2>
+        <p class="sub">Client names the challenge. You turn it into a Superman brief.</p>
+      </div>
+      <div class="cols">
+        <div>
+          <div class="col-head left">What you hear</div>
+          <div class="hear-item">"We need to automate our supplier onboarding process"</div>
+          <div class="hear-item">"Our data is siloed — we can't see the full client picture"</div>
+          <div class="hear-item">"Can we build something to classify these documents automatically?"</div>
+        </div>
+        <div>
+          <div class="col-head right">What you say to Superman</div>
+          <div class="say-item">"Superman &mdash; supplier onboarding PoC on Azure. Bob, what do we need?"</div>
+          <div class="say-item">"Superman &mdash; unified client view, graph-based. Bob, blueprint it."</div>
+          <div class="say-item">"Superman &mdash; document classifier PoC. Azure AI. Brief Athanasios first, then Eric."</div>
+        </div>
+      </div>
+      <div class="bottom-note">Superman handles the routing. <strong>You handle the client.</strong></div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SLIDE 6 — Quick Reference
+  ════════════════════════════════════════════════════════════ -->
+  <section class="slide" id="slide-6">
+    <div class="ref-wrap">
+      <div class="slide-header" style="margin-bottom:0.75rem; max-width:72rem;">
+        <div class="eyebrow">Quick Reference</div>
+        <h2>What to say for each type of request</h2>
+        <p class="sub">Address any agent by name to activate them directly.</p>
+      </div>
+
+      <div class="ref-table">
+        <div class="ref-row">
+          <div class="ref-scenario">I need to build something</div>
+          <div class="ref-arrow">&#8594;</div>
+          <div class="ref-cmd">"Superman &mdash; build [X]. Paulien, plan it."</div>
+        </div>
+        <div class="ref-row">
+          <div class="ref-scenario">I need an architecture design</div>
+          <div class="ref-arrow">&#8594;</div>
+          <div class="ref-cmd">"Bob &mdash; blueprint [the system]."</div>
+        </div>
+        <div class="ref-row">
+          <div class="ref-scenario">I need Azure / Microsoft platform</div>
+          <div class="ref-arrow">&#8594;</div>
+          <div class="ref-cmd">"Nexus &mdash; what service fits [this use case]?"</div>
+        </div>
+        <div class="ref-row">
+          <div class="ref-scenario">I need to research something</div>
+          <div class="ref-arrow">&#8594;</div>
+          <div class="ref-cmd">"Athanasios &mdash; investigate [topic]."</div>
+        </div>
+        <div class="ref-row">
+          <div class="ref-scenario">I need to check quality / review</div>
+          <div class="ref-arrow">&#8594;</div>
+          <div class="ref-cmd">"Vera &mdash; review [this]. PASS or FAIL."</div>
+        </div>
+      </div>
+
+      <div class="ref-note">Address any agent by name to switch directly to them.</div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SLIDE 7 — The PoC Sprint
+  ════════════════════════════════════════════════════════════ -->
+  <section class="slide" id="slide-7">
+    <div class="sprint-wrap">
+      <div class="slide-header" style="margin-bottom:1rem; max-width:80rem;">
+        <div class="eyebrow">The PoC Sprint</div>
+        <h2>Brief to Working Demo</h2>
+        <p class="sub">What happens after you give Superman the brief.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="tl-step">
+          <div class="tl-node">
+            <div class="tl-agent">Bob</div>
+            <div class="tl-action">Blueprint</div>
+          </div>
+          <div class="tl-time">20 min</div>
+        </div>
+
+        <div class="tl-step kryptonite">
+          <div class="tl-node">
+            <div class="tl-agent">Kryptonite</div>
+            <div class="tl-action">Red team</div>
+          </div>
+          <div class="tl-time">15 min</div>
+        </div>
+
+        <div class="tl-step">
+          <div class="tl-node">
+            <div class="tl-agent">Eric</div>
+            <div class="tl-action">Build</div>
+          </div>
+          <div class="tl-time">2&ndash;4 hours</div>
+        </div>
+
+        <div class="tl-step">
+          <div class="tl-node">
+            <div class="tl-agent">Marlo</div>
+            <div class="tl-action">UX review</div>
+          </div>
+          <div class="tl-time">30 min</div>
+        </div>
+
+        <div class="tl-step vera">
+          <div class="tl-node">
+            <div class="tl-agent">Vera</div>
+            <div class="tl-action">Sign-off</div>
+          </div>
+          <div class="tl-time">30 min</div>
+        </div>
+      </div>
+
+      <div class="sprint-note">
+        <strong>Kryptonite attacks the plan before Eric writes a line.</strong>
+        Better to find the flaw in 15 minutes than to demo something that breaks.
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SLIDE 8 — The Microsoft Stack
+  ════════════════════════════════════════════════════════════ -->
+  <section class="slide" id="slide-8">
+    <div class="stack-wrap">
+      <div class="slide-header" style="margin-bottom:1rem; max-width:80rem;">
+        <div class="eyebrow">The Microsoft Stack</div>
+        <h2>Nexus Knows the Stack</h2>
+        <p class="sub">Activate Nexus whenever the project touches Microsoft.</p>
+      </div>
+
+      <div class="stack-grid">
+        <div class="stack-card">
+          <div class="sc-trigger">Azure infrastructure</div>
+          <div class="sc-detail">WAF assessment, service selection, cost model</div>
+        </div>
+        <div class="stack-card">
+          <div class="sc-trigger">AI / Copilot features</div>
+          <div class="sc-detail">AI Foundry, Phi, Copilot Studio, Responsible AI</div>
+        </div>
+        <div class="stack-card">
+          <div class="sc-trigger">Power Platform</div>
+          <div class="sc-detail">Canvas vs Model-Driven, Dataverse, Power Automate</div>
+        </div>
+        <div class="stack-card">
+          <div class="sc-trigger">Data platform</div>
+          <div class="sc-detail">Fabric, Databricks, Delta Lake, Unity Catalog</div>
+        </div>
+        <div class="stack-card">
+          <div class="sc-trigger">Data governance</div>
+          <div class="sc-detail">Purview, Azure Policy, data residency</div>
+        </div>
+        <div class="stack-card">
+          <div class="sc-trigger">M365 integration</div>
+          <div class="sc-detail">Graph API, Teams, SharePoint, Outlook</div>
+        </div>
+      </div>
+
+      <div class="nexus-call">
+        <div class="nc-label">How to call</div>
+        <div class="nc-cmd">"Nexus &mdash; [client] needs [X] on Azure. What's the right service?"</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SLIDE 9 — Quality Gate
+  ════════════════════════════════════════════════════════════ -->
+  <section class="slide" id="slide-9">
+    <div class="gate-wrap">
+      <div class="slide-header" style="margin-bottom:1.25rem; max-width:76rem;">
+        <div class="eyebrow">Quality Gate</div>
+        <h2>Nothing Ships Without Vera</h2>
+        <p class="sub">Every delivery. Every size. No exceptions.</p>
+      </div>
+
+      <div class="verdicts">
+        <div class="verdict-card v-pass">
+          <div class="v-label">PASS</div>
+          <div class="v-desc">Ready to demo. Ship it.</div>
+        </div>
+        <div class="verdict-card v-conditional">
+          <div class="v-label">Conditional Pass</div>
+          <div class="v-desc">Demo with caveats noted. Fix before handover.</div>
+        </div>
+        <div class="verdict-card v-fail">
+          <div class="v-label">FAIL</div>
+          <div class="v-desc">Do not demo. Eric fixes first.</div>
+        </div>
+      </div>
+
+      <div class="vera-line">
+        Even a 24-hour PoC. <strong>Vera's sign-off is what makes it client-ready</strong> — not just done.
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SLIDE 10 — The Red Team
+  ════════════════════════════════════════════════════════════ -->
+  <section class="slide" id="slide-10">
+    <div class="slide-header" style="max-width:80rem; margin-bottom:1.5rem;">
+      <div class="eyebrow">The Red Team</div>
+      <h2>Kryptonite Breaks It First</h2>
+      <p class="sub">So the client doesn't.</p>
+    </div>
+    <div class="red-wrap">
+      <div class="challenges">
+        <div class="ch-head">What Kryptonite challenges</div>
+        <div class="challenge-item">
+          <div class="ci-dot"></div>
+          <span>Assumptions in the brief <em>("what if the client can't give you live data?")</em></span>
+        </div>
+        <div class="challenge-item">
+          <div class="ci-dot"></div>
+          <span>Architecture risks <em>("this won't scale past 100 users")</em></span>
+        </div>
+        <div class="challenge-item">
+          <div class="ci-dot"></div>
+          <span>Demo risks <em>("what breaks if the internet drops?")</em></span>
+        </div>
+        <div class="challenge-item">
+          <div class="ci-dot"></div>
+          <span>Scope creep <em>("are you building what they asked or what you think they need?")</em></span>
+        </div>
+      </div>
+
+      <div class="pull-quote">
+        <div class="pq-open">&ldquo;</div>
+        <div class="pq-text">A plan that survives Kryptonite is a plan worth building.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SLIDE 11 — Growing Smarter
+  ════════════════════════════════════════════════════════════ -->
+  <section class="slide" id="slide-11">
+    <div class="learn-wrap">
+      <div class="slide-header" style="margin-bottom:1rem; max-width:78rem;">
+        <div class="eyebrow">Growing Smarter</div>
+        <h2>The Squad Learns from Every Engagement</h2>
+        <p class="sub">Coach watches. Writes game tape. The team gets better.</p>
+      </div>
+
+      <div class="learn-flow">
+        <div class="learn-step">
+          <div class="ls-num">Step 1</div>
+          <div class="ls-title">You deliver a PoC</div>
+          <div class="ls-detail">Coach observes what worked and what didn't</div>
+        </div>
+        <div class="learn-step">
+          <div class="ls-num">Step 2</div>
+          <div class="ls-title">Coach writes game tape</div>
+          <div class="ls-detail">Patterns go into the squad's memory</div>
+        </div>
+        <div class="learn-step">
+          <div class="ls-num">Step 3</div>
+          <div class="ls-title">Next engagement</div>
+          <div class="ls-detail">Squad boots with the lessons from the last one</div>
+        </div>
+      </div>
+
+      <div class="key-line">
+        Your squad on engagement 10 is <strong>dramatically better</strong> than on engagement 1.
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SLIDE 12 — Handing Over
+  ════════════════════════════════════════════════════════════ -->
+  <section class="slide" id="slide-12">
+    <div class="handover-wrap">
+      <div class="slide-header" style="margin-bottom:1rem; max-width:78rem;">
+        <div class="eyebrow">Handing Over</div>
+        <h2>Client-Ready Delivery</h2>
+        <p class="sub">What a complete PoC handover looks like.</p>
+      </div>
+
+      <div class="checklist">
+        <div class="check-row">
+          <div class="check-icon">
+            <svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg>
+          </div>
+          <div class="cr-text"><strong>Vera signed off</strong> &mdash; PASS</div>
+        </div>
+        <div class="check-row">
+          <div class="check-icon">
+            <svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg>
+          </div>
+          <div class="cr-text"><strong>Kevin</strong> produced a one-page summary the client can read without a technical background</div>
+        </div>
+        <div class="check-row">
+          <div class="check-icon">
+            <svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg>
+          </div>
+          <div class="cr-text"><strong>Bob's architecture diagram</strong> included &mdash; client sees the "what next" path to full implementation</div>
+        </div>
+        <div class="check-row">
+          <div class="check-icon">
+            <svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg>
+          </div>
+          <div class="cr-text"><strong>Costs estimated</strong> &mdash; G ran the numbers, no surprise bills</div>
+        </div>
+        <div class="check-row">
+          <div class="check-icon">
+            <svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg>
+          </div>
+          <div class="cr-text"><strong>Repo or artefact handed over</strong> &mdash; something the client can actually use</div>
+        </div>
+      </div>
+
+      <div class="handover-note">
+        This is the moment Avanade's value is visible. Not when the contract is signed &mdash; <strong>when the demo works.</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SLIDE 13 — Emergency Setup
+  ════════════════════════════════════════════════════════════ -->
+  <section class="slide" id="slide-13">
+    <div class="emergency-wrap">
+
+      <div>
+        <div class="slide-header" style="margin-bottom:1.25rem;">
+          <div class="eyebrow">Emergency Setup</div>
+          <h2>Need to Set Up During a Workshop?</h2>
+          <p class="sub">If you don't have Superteam ready before the session &mdash; here's the fastest path.</p>
+        </div>
+
+        <div class="em-steps">
+          <div class="em-step">
+            <div class="esn">1</div>
+            <div class="est">Open <code>claude.ai</code> &rarr; New Project &rarr; name it <code>Superteam</code></div>
+          </div>
+          <div class="em-step">
+            <div class="esn">2</div>
+            <div class="est">Go to <code>github.com/stevemarksava/superteam</code></div>
+          </div>
+          <div class="em-step">
+            <div class="esn">3</div>
+            <div class="est">Open <code>squad/onboarding/paste-into-claude.md</code> &rarr; copy the file</div>
+          </div>
+          <div class="em-step">
+            <div class="esn">4</div>
+            <div class="est">Paste into Project Instructions &rarr; add your name and client context at the bottom</div>
+          </div>
+          <div class="em-step">
+            <div class="esn">5</div>
+            <div class="est">Say: "Superman &mdash; I'm [name], FDE at Avanade. I have a client brief: [X]. Go."</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="em-right">
+        <div class="timing-note">
+          <div class="tn-label">Setup time</div>
+          <div class="tn-time">3&ndash;5 minutes</div>
+          <div class="tn-text">Then the squad is live.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SLIDE 14 — Your First Delivery
+  ════════════════════════════════════════════════════════════ -->
+  <section class="slide" id="slide-14">
+    <div class="s14-eyebrow">Super<span class="team-red">team</span> Training</div>
+    <h2>Start Now</h2>
+    <p class="s14-sub">Open Claude. Say this.</p>
+
+    <div class="first-prompt">
+      <div class="fp-text">"Superman &mdash; I'm [your name], FDE at Avanade.
+
+I'm preparing for a workshop with a client who needs [X].
+Stack is [Azure / M365 / custom / unknown].
+
+Brief the team. What's the first question?"</div>
+    </div>
+
+    <div class="fp-after">That's it. <strong>Superman takes it from there.</strong></div>
+    <div class="fp-tip">Not sure what [X] is yet? Say that. Athanasios can research the problem space first.</div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SLIDE 15 — Where Things Are
+  ════════════════════════════════════════════════════════════ -->
+  <section class="slide" id="slide-15">
+    <div class="refs-wrap">
+      <div class="slide-header" style="margin-bottom:1rem; max-width:72rem;">
+        <div class="eyebrow">References</div>
+        <h2>Everything You Need</h2>
+        <p class="sub">Links and references for after the training.</p>
+      </div>
+
+      <div class="ref-list">
+        <div class="ref-item">
+          <div class="ri-name">Setup guide</div>
+          <div class="ri-path">squad/onboarding/getting-started.md</div>
+        </div>
+        <div class="ref-item">
+          <div class="ri-name">Paste into Claude</div>
+          <div class="ri-path">squad/onboarding/paste-into-claude.md</div>
+        </div>
+        <div class="ref-item">
+          <div class="ri-name">New project checklist</div>
+          <div class="ri-path">squad/onboarding/new-project-checklist.md</div>
+        </div>
+        <div class="ref-item">
+          <div class="ri-name">Adapt for your team</div>
+          <div class="ri-path">squad/onboarding/adapt-for-your-team.md</div>
+        </div>
+        <div class="ref-item">
+          <div class="ri-name">Add an agent</div>
+          <div class="ri-path">squad/onboarding/add-an-agent.md</div>
+        </div>
+        <div class="ref-item ri-repo">
+          <div class="ri-name">Repo</div>
+          <div class="ri-path">github.com/stevemarksava/superteam</div>
+        </div>
+      </div>
+
+      <div class="final-note"><strong>Questions?</strong> Talk to your FDE trainer.</div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       Navigation controls
+  ════════════════════════════════════════════════════════════ -->
+  <button class="nav-btn" id="btn-prev" aria-label="Previous slide" disabled>&#8592;</button>
+  <button class="nav-btn" id="btn-next" aria-label="Next slide">&#8594;</button>
+
+  <div id="counter">Training &middot; 1 / 15</div>
+
+  <button id="fullscreen-btn" title="Toggle fullscreen (F)">&#x26F6;</button>
+
+  <div class="nav-hint visible" id="nav-hint">
+    <span class="key">&#8594;</span>
+    <span>or Enter to begin</span>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       Navigation script
+  ════════════════════════════════════════════════════════════ -->
+  <script>
+    (function () {
+      var slides    = Array.from(document.querySelectorAll('.slide'));
+      var counter   = document.getElementById('counter');
+      var navHint   = document.getElementById('nav-hint');
+      var btnPrev   = document.getElementById('btn-prev');
+      var btnNext   = document.getElementById('btn-next');
+      var btnFs     = document.getElementById('fullscreen-btn');
+      var total     = slides.length;
+      var current   = 0;
+
+      function show(n) {
+        n = Math.max(0, Math.min(n, total - 1));
+        slides.forEach(function (s, i) { s.classList.toggle('active', i === n); });
+        current = n;
+        counter.textContent = 'Training · ' + (n + 1) + ' / ' + total;
+        location.hash = 'slide-' + (n + 1);
+
+        btnPrev.disabled = (n === 0);
+        btnNext.disabled = (n === total - 1);
+
+        navHint.classList.toggle('visible', n === 0);
+      }
+
+      function toggleFullscreen() {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(function () {});
+        } else {
+          document.exitFullscreen();
+        }
+      }
+
+      /* ── Keyboard ─────────────────────────────────────────────── */
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight' || e.key === 'Enter' || e.key === ' ' || e.key === 'PageDown') {
+          e.preventDefault(); show(current + 1);
+        } else if (e.key === 'ArrowLeft' || e.key === 'PageUp' || e.key === 'Backspace') {
+          e.preventDefault(); show(current - 1);
+        } else if (e.key === 'f' || e.key === 'F') {
+          toggleFullscreen();
+        } else if (e.key === 'Home') {
+          e.preventDefault(); show(0);
+        } else if (e.key === 'End') {
+          e.preventDefault(); show(total - 1);
+        }
+      });
+
+      /* ── Buttons ──────────────────────────────────────────────── */
+      btnPrev.addEventListener('click', function () { show(current - 1); });
+      btnNext.addEventListener('click', function () { show(current + 1); });
+      btnFs.addEventListener('click', toggleFullscreen);
+
+      /* ── Swipe ────────────────────────────────────────────────── */
+      var touchStartX = 0;
+      document.addEventListener('touchstart', function (e) {
+        touchStartX = e.touches[0].clientX;
+      }, { passive: true });
+      document.addEventListener('touchend', function (e) {
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 50) { dx < 0 ? show(current + 1) : show(current - 1); }
+      }, { passive: true });
+
+      /* ── Restore from URL hash ────────────────────────────────── */
+      var hash = location.hash;
+      if (hash && hash.match(/^#slide-(\d+)$/)) {
+        show(parseInt(hash.replace('#slide-', ''), 10) - 1);
+      } else {
+        show(0);
+      }
+    })();
+  </script>
+
+</body>
+</html>
