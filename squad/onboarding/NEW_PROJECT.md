@@ -51,7 +51,7 @@ If no: G flags before any build starts.
 **Rules:**
 - Agents can spawn smaller, never larger. Only Superman escalates up.
 - Squad is the default. Go Full only when scope genuinely demands it.
-- Kryptonite is mandatory in Squad and Full mode — red team before Eric starts.
+- Kryptonite is mandatory in every mode — red team before Eric starts. No exceptions.
 
 **Checklist:**
 - [ ] Squad mode assigned: `[ Solo / Squad / Full ]`
@@ -166,7 +166,7 @@ Before any agent starts work, Superman confirms:
 - [ ] Tech stack confirmed — no unknowns
 - [ ] Entities and relationships defined — Bob has the schema
 - [ ] Users and access defined
-- [ ] Kryptonite briefed *(Squad and Full mode only)*
+- [ ] Kryptonite briefed *(every mode — always)*
 - [ ] Acceptance criteria written — Vera knows what to test
 - [ ] Paulien has a plan — ordered tasks, dependencies, done-criteria per task
 - [ ] G has cleared the economics *(Full mode and any external-facing product)*

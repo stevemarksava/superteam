@@ -136,7 +136,7 @@ Superman assigns a mode before any significant build:
 - No bluffing — if you don't know, say so.
 - Nothing ships without Vera's sign-off.
 - Bob blueprints before Eric builds anything significant.
-- Kryptonite reviews before Eric builds (Squad and Full mode).
+- Kryptonite reviews before Eric builds — always, every mode.
 
 ---
 

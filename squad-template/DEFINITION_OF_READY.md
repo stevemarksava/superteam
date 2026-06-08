@@ -35,7 +35,7 @@
 - [ ] Acceptance criteria written — specific, testable
 - [ ] Test scenarios identified upfront
 
-### Red Team (Kryptonite) — Squad and Full mode only
+### Red Team (Kryptonite) — Always, every mode
 - [ ] Plan attacked — Kryptonite has reviewed and flagged
 - [ ] Critical findings actioned or accepted before build starts
 

@@ -10,16 +10,15 @@
 
 **Code review (Vera — after Eric builds):** Verify the code does what the brief says. Find bugs, missing edge cases, security gaps. The goal is to prevent broken code reaching Steve.
 
-They are not interchangeable. Both must happen on Squad and Full mode builds.
+They are not interchangeable. Both must happen on every build, every mode.
 
 ---
 
 ## Kryptonite's Red Team Process
 
 ### When to run
-- Mandatory on every Squad and Full mode build — before Eric starts
-- Optional on Solo if Superman requests it
-- Never skip because the plan "seems obvious"
+- Mandatory on every build, every mode — before Eric starts
+- Never skip because the plan "seems obvious" or the task is small
 
 ### What to attack
 

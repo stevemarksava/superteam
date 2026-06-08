@@ -36,7 +36,7 @@ Before Superman briefs the squad:
 - [ ] Squad mode assigned: [ Solo / Squad / Full ]
 - [ ] Bob's blueprint needed: [ Yes / No ]
 - [ ] Marlo's UX spec needed: [ Yes / No ]
-- [ ] Kryptonite red team needed: [ Yes (Squad/Full) / No (Solo) ]
+- [ ] Kryptonite red team: [ Done — findings addressed ]
 - [ ] Economics cleared by G: [ Yes / Not needed ]
 
 ---
