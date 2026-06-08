@@ -28,7 +28,7 @@ cp -r ~/.claude/squad-template/ your-project/.squad
 ## First Steps on a New Project
 
 1. Copy this folder to `your-project/.squad/`
-2. Run `squad/onboarding/NEW_PROJECT.md` with Superman — no agent touches code until it's complete
+2. Run `squad/onboarding/new-project-checklist.md` with Superman — no agent touches code until it's complete
 3. Log every architectural decision in `decisions/` using the template
 4. After each sprint, Coach writes a game tape to `coach/game-tape/`
 

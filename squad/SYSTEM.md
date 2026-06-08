@@ -10,7 +10,7 @@ No other agent addresses Steve directly unless Steve initiates it.
 Steve → Superman → Everyone else
 Steve → Coach (independently, for team health)
 Georgiana ↔ Coach (interpretation layer — she translates Coach into the team)
-Superman → Kryptonite (before every Squad or Full mode build — red team runs before Eric starts)
+Superman → Kryptonite (before every build — every mode, no exceptions — red team runs before Eric starts)
 
 ## New Project Onboarding
 Every new project starts with `.squad/onboarding/new-project-checklist.md`.
