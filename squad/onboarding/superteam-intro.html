@@ -21,17 +21,72 @@
       --accent-2:  #6366f1;
       --accent-3:  #10b981;
       --accent-warn: #f59e0b;
-      --avanade:       #7B2D8B;
-      --avanade-light: #D926AA;
+      --avanade:       #E85D0C;
+      --avanade-light: #FF9500;
+      --superman-red:  #CC0000;
       --font-body: 'Inter', system-ui, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
     }
     .avanade-text {
-      background: linear-gradient(135deg, #D926AA 0%, #7B2D8B 100%);
+      background: linear-gradient(135deg, #FF9500 0%, #E85D0C 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+    .team-red {
+      color: var(--superman-red);
+      -webkit-text-fill-color: var(--superman-red);
+    }
+
+    /* ── Nav Buttons ───────────────────────────────────────────── */
+    .nav-btn {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--fg-muted);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      z-index: 200;
+      opacity: 0.35;
+      user-select: none;
+      line-height: 1;
+    }
+    .nav-btn:hover { opacity: 1; background: rgba(255,255,255,0.1); color: var(--fg); }
+    .nav-btn:disabled { opacity: 0.08; pointer-events: none; }
+    #btn-prev { left: 0.75rem; }
+    #btn-next { right: 0.75rem; }
+
+    /* ── Fullscreen Button ────────────────────────────────────── */
+    #fullscreen-btn {
+      position: fixed;
+      bottom: 1.6rem;
+      left: 2rem;
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 4px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--fg-muted);
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      z-index: 200;
+      opacity: 0.4;
+    }
+    #fullscreen-btn:hover { opacity: 1; border-color: rgba(255,255,255,0.3); color: var(--fg); }
 
     /* ── Reset ─────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -806,7 +861,7 @@
   ════════════════════════════════════════════════════════════ -->
   <section class="slide active" id="slide-1">
     <div class="eyebrow">Welcome to</div>
-    <h1>Superteam</h1>
+    <h1>Super<span class="team-red">team</span></h1>
     <p class="subtitle">Your personal AI squad</p>
     <p class="tagline">Built for the speed of <span class="avanade-text">Avanade</span></p>
     <div class="welcome-pill">
@@ -1123,13 +1178,18 @@
   </section>
 
   <!-- ════════════════════════════════════════════════════════════
-       Slide counter + nav hint
+       Navigation controls
   ════════════════════════════════════════════════════════════ -->
+  <button class="nav-btn" id="btn-prev" aria-label="Previous slide" disabled>&#8592;</button>
+  <button class="nav-btn" id="btn-next" aria-label="Next slide">&#8594;</button>
+
   <div id="counter">1 / 8</div>
+
+  <button id="fullscreen-btn" title="Toggle fullscreen (F)">&#x26F6;</button>
 
   <div class="nav-hint visible" id="nav-hint">
     <span class="key">&#8594;</span>
-    <span>to begin</span>
+    <span>or Enter to begin</span>
   </div>
 
   <!-- ════════════════════════════════════════════════════════════
@@ -1137,45 +1197,70 @@
   ════════════════════════════════════════════════════════════ -->
   <script>
     (function () {
-      const slides  = Array.from(document.querySelectorAll('.slide'));
-      const counter = document.getElementById('counter');
-      const navHint = document.getElementById('nav-hint');
-      const total   = slides.length;
-      let current   = 0;
+      const slides      = Array.from(document.querySelectorAll('.slide'));
+      const counter     = document.getElementById('counter');
+      const navHint     = document.getElementById('nav-hint');
+      const btnPrev     = document.getElementById('btn-prev');
+      const btnNext     = document.getElementById('btn-next');
+      const btnFs       = document.getElementById('fullscreen-btn');
+      const total       = slides.length;
+      let current       = 0;
 
       function show(n) {
         n = Math.max(0, Math.min(n, total - 1));
-        slides.forEach(function (s, i) {
-          s.classList.toggle('active', i === n);
-        });
+        slides.forEach(function (s, i) { s.classList.toggle('active', i === n); });
         current = n;
         counter.textContent = (n + 1) + ' / ' + total;
         location.hash = 'slide-' + (n + 1);
 
-        // nav hint: only on slide 1, hide once you move
-        if (n === 0) {
-          navHint.classList.add('visible');
+        btnPrev.disabled = (n === 0);
+        btnNext.disabled = (n === total - 1);
+
+        navHint.classList.toggle('visible', n === 0);
+      }
+
+      function toggleFullscreen() {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(function () {});
         } else {
-          navHint.classList.remove('visible');
+          document.exitFullscreen();
         }
       }
 
+      // ── Keyboard ──────────────────────────────────────────────
       document.addEventListener('keydown', function (e) {
-        if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
-          e.preventDefault();
-          show(current + 1);
-        }
-        if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
-          e.preventDefault();
-          show(current - 1);
+        if (e.key === 'ArrowRight' || e.key === 'Enter' || e.key === ' ' || e.key === 'PageDown') {
+          e.preventDefault(); show(current + 1);
+        } else if (e.key === 'ArrowLeft' || e.key === 'PageUp' || e.key === 'Backspace') {
+          e.preventDefault(); show(current - 1);
+        } else if (e.key === 'f' || e.key === 'F') {
+          toggleFullscreen();
+        } else if (e.key === 'Home') {
+          e.preventDefault(); show(0);
+        } else if (e.key === 'End') {
+          e.preventDefault(); show(total - 1);
         }
       });
 
-      // Restore from URL hash on load
+      // ── Buttons ───────────────────────────────────────────────
+      btnPrev.addEventListener('click', function () { show(current - 1); });
+      btnNext.addEventListener('click', function () { show(current + 1); });
+      btnFs.addEventListener('click', toggleFullscreen);
+
+      // ── Swipe (touch / clicker via pointer) ───────────────────
+      var touchStartX = 0;
+      document.addEventListener('touchstart', function (e) {
+        touchStartX = e.touches[0].clientX;
+      }, { passive: true });
+      document.addEventListener('touchend', function (e) {
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 50) { dx < 0 ? show(current + 1) : show(current - 1); }
+      }, { passive: true });
+
+      // ── Restore from URL hash ─────────────────────────────────
       var hash = location.hash;
       if (hash && hash.match(/^#slide-(\d+)$/)) {
-        var idx = parseInt(hash.replace('#slide-', ''), 10) - 1;
-        show(idx);
+        show(parseInt(hash.replace('#slide-', ''), 10) - 1);
       } else {
         show(0);
       }

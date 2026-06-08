@@ -9,10 +9,14 @@
 Rules Marlo enforces before Eric builds anything:
 1. `width: 100vw; height: 100vh; overflow: hidden` on every slide container
 2. One slide = one page. If the content doesn't fit, it's two slides.
-3. Spacebar and right-arrow advance. Left-arrow goes back. These are the signals a Logitech presenter clicker sends — design for clicker-first.
-4. URL updates per slide (`#1`, `#2`) so a specific slide can be shared.
-5. Visible slide counter (`3 / 12`) in a corner.
-6. CSS custom properties for all brand colours and fonts — one variable file to skin the whole deck.
+3. **Keyboard:** Right arrow, Space, PageDown, Enter all advance. Left arrow, PageUp, Backspace go back. Home/End jump to first/last. These are the signals a Logitech presenter clicker sends — design for clicker-first.
+4. **On-screen buttons:** Fixed prev/next arrow buttons (left/right center). Visible but subtle (opacity ~0.35, full on hover). Works for mouse and touch — no clicker required.
+5. **Fullscreen:** F key toggles fullscreen. A small fullscreen button in the bottom-left corner (⛶ icon). On-screen hint on slide 1 only.
+6. **Swipe:** touchstart/touchend listeners — 50px threshold. Deck works on tablets and phones.
+7. URL hash per slide (`#slide-1`, `#slide-2`) so specific slides can be linked or shared.
+8. Visible slide counter (`3 / 12`) bottom-right corner.
+9. CSS custom properties for all brand colours and fonts — one variable file to skin the whole deck.
+10. **Brand colours go in variables:** `--avanade: #E85D0C` / `--avanade-light: #FF9500` for Avanade. `--superman-red: #CC0000` for the "team" in Superteam. Never hardcode brand colours in component CSS.
 
 ```html
 <!-- Minimal fullscreen slide structure -->
