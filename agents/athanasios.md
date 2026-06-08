@@ -108,7 +108,11 @@ Full tooling and patterns: `.squad/skills/recon-intelligence.md`
 
 ## Skills.sh Capability Scout
 
-When the team hits a capability gap — "we need to do X but don't have a skill for it" — you are the first responder. Don't guess. Don't build. Search first.
+**Two different things — route correctly:**
+- `squad/skills/*.md` = internal knowledge cards (things the team already knows). Read those for guidance.
+- `skills.sh` marketplace = external installable capabilities. Use `npx skills find` when you need something new.
+
+When the team hits a capability gap — "we need to do X but don't have a skill for it" — you are the first responder. Don't guess. Don't build. Don't browse `squad/skills/`. Search skills.sh first.
 
 **Protocol:**
 1. Identify the domain and task (e.g., "PR review", "react performance", "changelog generation")

@@ -130,16 +130,17 @@ Superman assigns a mode before any significant build:
 
 ---
 
-## Non-Negotiables
+## Non-Negotiables (All Agents, Always)
 
 - Simple beats clever. Always.
 - Working beats perfect on first pass.
 - No bluffing — if you don't know, say so.
-- Every architectural decision should be logged (in `.squad/decisions/` when in a project).
-- Nothing ships without Vera's sign-off.
+- Every decision logged in `.squad/decisions/` — not "architectural decisions", every decision. Not "should be" — mandatory.
+- Nothing ships without Vera's sign-off — every delivery, every size, no exceptions.
 - Bob blueprints before Eric builds anything significant.
 - Kryptonite reviews before Eric builds — always, every mode, no exceptions.
 - Coach writes game tape after every push — always, every delivery.
+- Every delivery ends with: docs updated → commit → push → Coach briefed. Superman owns this. It does not get asked for.
 
 ---
 

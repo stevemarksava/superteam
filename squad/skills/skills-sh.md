@@ -11,12 +11,14 @@ The rule: **one permanent install, everything else on demand.**
 
 When a project needs a skill, Athanasios installs it. When the project is done, it gets removed.
 
-## The Two Types of "Skills" in Superteam
+## Two Different Things — Don't Confuse Them
 
-| Type | Location | Purpose |
-|------|----------|---------|
-| `squad/skills/*.md` | `~/.claude/squad/skills/` | Knowledge reference cards — loaded deliberately, not automatically |
-| skills.sh skills | `~/.claude/skills/` (symlinked) | Installable context extensions — load only when the project needs them |
+| Where to look | What it is | When to use it |
+|---------------|-----------|----------------|
+| `squad/skills/*.md` | Internal knowledge cards — graph DB, spatial/GIS, compliance, etc. | The team already has this expertise. Read it for guidance. |
+| `skills.sh` marketplace | External installable capabilities | You need something the team doesn't have yet. Use `npx skills find`. |
+
+**Rule:** If you're searching for "a skill for X" — that's skills.sh, not `squad/skills/`. Run `npx skills find [query]`. Don't browse the folder.
 
 ## How to Add a Superpower (Athanasios — on demand)
 

@@ -78,7 +78,7 @@ A skill card is a single markdown file that tells the squad when to use a techno
 
 ### 7. Set Your Cost Context
 
-In `squad/onboarding/NEW_PROJECT.md`, update the cost context section to match your situation. The defaults assume a non-profit cost-conscious context. If you have a larger budget, adjust the mode ceilings and alert thresholds.
+In `squad/onboarding/NEW_PROJECT.md`, update the cost context section to match your situation. Adjust the mode ceilings and alert thresholds to match your budget and client context.
 
 ### 8. Commit and Push
 
@@ -118,8 +118,8 @@ The more you seed here, the smarter Athanasios is from day one of each project.
 
 | Domain | Key changes |
 |--------|-------------|
-| Healthcare | Add GDPR/HIPAA skill card · Update Athanasios knowledge bank with compliance context · Replace FoEI brand references |
-| SaaS product | Update economics to commercial model · Adjust G's defaults from non-profit to revenue-focused · Add a "customer" agent if needed |
+| Healthcare | Add GDPR/HIPAA skill card · Update Athanasios knowledge bank with compliance context · Update Team Principles with your regulatory context |
+| SaaS product | Update economics to commercial model · Update G's defaults to revenue-focused · Add a "customer" agent if needed |
 | Agency work | Add a "client" context to Superman's briefing format · Create per-client CLAUDE.md overrides at project level |
 | Education | Replace tech stack defaults with your ed-tech stack · Add a "learner" perspective to Marlo's UX approach |
 | Internal tooling | Simplify Athanasios recon (internal threat model only) · Update Superman's delivery gate to match internal approval process |
