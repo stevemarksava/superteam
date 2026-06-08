@@ -224,7 +224,13 @@
       "Read(//c/c/Users/s.marks/.claude/**)",
       "Bash(sed -i 's|squad/onboarding/NEW_PROJECT\\\\.md|squad/onboarding/new-project-checklist.md|g; s|`NEW_PROJECT\\\\.md`|`new-project-checklist.md`|g' squad/onboarding/adapt-for-your-team.md)",
       "Bash(sed -i 's|squad/onboarding/claude-desktop-project-instructions\\\\.md|squad/onboarding/paste-into-claude.md|g; s|squad/onboarding/CLAUDE_DESKTOP\\\\.md|squad/onboarding/getting-started.md|g' squad/onboarding/getting-started.md)",
-      "Bash(cd \"/c/Users/s.marks/.claude\" && sed -i 's|squad/onboarding/claude-desktop-project-instructions\\\\.md|squad/onboarding/paste-into-claude.md|g' squad/onboarding/superteam-intro.html && echo \"done\")"
+      "Bash(cd \"/c/Users/s.marks/.claude\" && sed -i 's|squad/onboarding/claude-desktop-project-instructions\\\\.md|squad/onboarding/paste-into-claude.md|g' squad/onboarding/superteam-intro.html && echo \"done\")",
+      "Bash(start \"C:\\\\Users\\\\s.marks\\\\.claude\\\\squad\\\\onboarding\\\\superteam-training.html\")",
+      "Bash(start \"C:\\\\Users\\\\s.marks\\\\.claude\\\\squad\\\\onboarding\\\\superteam-intro.html\")",
+      "Bash(unzip -o results.zip -d results_extracted)",
+      "Bash(unzip -o hotpotqa_run_20260422_130428_llm_As_a_judge.zip -d llm_judge_extracted)",
+      "Bash(pip install *)",
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\Users\\\\s.marks\\\\source\\\\repos\\\\Taha-Thesis\\\\Thesis\\\\.squad\\\\coach\\\\game-tape\")"
     ],
     "defaultMode": "bypassPermissions",
     "additionalDirectories": [

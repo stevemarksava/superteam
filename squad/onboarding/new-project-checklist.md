@@ -4,6 +4,23 @@
 
 ---
 
+## 0. Session Type — Classify Before Anything Else
+
+Before mode selection, Superman classifies the **session type**. This determines who is deployed.
+
+| Session type | Trigger | Minimum squad |
+|---|---|---|
+| **Build** | Code, schema, UI, config changes | Solo / Squad / Full (see mode matrix) |
+| **Research / Advisory** | Cold codebase, technical diagnosis, recommendations for a third party | Athanasios + Superman + Vera (minimum) |
+| **Consulting output** | Document, findings, plan, or push going to an external person or repo | Athanasios + Paulien + G (if costs involved) + Vera sign-off + Kryptonite on confident claims |
+
+**The rule:** If the output leaves this session and reaches a real person — it needs the squad. "It felt exploratory" is not an exemption. Consequence of output, not complexity of build, is the trigger for team deployment.
+
+- [ ] Session type classified: `[ Build / Research-Advisory / Consulting-Output ]`
+- [ ] Minimum squad for that session type confirmed and deployed
+
+---
+
 ## 1. The Vision
 
 **Ask the project owner:**
