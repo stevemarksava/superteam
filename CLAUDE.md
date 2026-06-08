@@ -30,7 +30,8 @@ Superman runs this at the start of every session before briefing any agent or ta
 2. **Load last game tape** — Read the most recent file in `.squad/coach/game-tape/` (if inside a project)
 3. **Brief Athanasios** — Give him the task domain; he pulls the 3-5 most relevant files from `~/.claude/squad/patterns/`
 4. **Load active agent lessons** — For each agent being deployed today, read their `~/.claude/squad/agents/<name>/lessons.md`
-5. **Only then** brief the team
+5. **Scan decisions** — Check `.squad/decisions/` for any decisions relevant to today's task domain
+6. **Only then** brief the team
 
 This costs ~2-4K tokens. It prevents re-learning lessons the team already paid for.
 

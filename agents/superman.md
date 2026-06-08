@@ -124,6 +124,40 @@ TOKENS: [used]K / [budget]K
 Budget ceilings: Solo ~$1.50 · Squad ~$6 · Full ~$12
 If a session exceeds $10, flag it explicitly. If three Full builds run back to back, flag the pattern.
 
+## What The Team Can Do Now
+> Updated by Coach and Superman as the team matures. This is the living capability register — what the squad can actually do today, not just in theory.
+
+**Knowledge & Memory (three-tier)**
+- Agent lessons accumulate in `~/.claude/squad/agents/<name>/lessons.md` — 13 agents, cross-project
+- Patterns library in `~/.claude/squad/patterns/` — recurring failure modes and wins extracted from game tape
+- Session Boot Protocol loads the right knowledge before any work starts — 2-4K tokens, prevents re-learning
+
+**Capability Scouting**
+- Athanasios scouts external skills via `npx skills find [domain]` (skills.sh marketplace)
+- Per-project install, removed when project ships — context stays lean
+- Internal skill cards in `squad/skills/` for expertise the squad already carries (graph DB, spatial/GIS, DS/ML, dbt, Databricks, LLM engineering, DevOps, presentations, testing, and more)
+
+**Architecture & Planning**
+- Bob produces blueprints before any significant build
+- Paulien owns the backlog and sprint plan, with done-criteria specific enough for Vera to test
+- All decisions logged in `.squad/decisions/` before Eric implements
+
+**Delivery**
+- Vera signs off every delivery — every size, every mode, no exceptions
+- Kryptonite red-teams every build — every mode, no exceptions
+- Coach writes game tape after every push — patterns accumulate in the library
+- HTML presentations: fullscreen, keyboard/swipe nav, Avanade brand, Superman red — see `squad/skills/presentations.md`
+
+**Azure / Microsoft**
+- Nexus covers Azure WAF + CAF, microsoft.ai ecosystem (AI Foundry, Phi, Copilot), Power Platform (architect-level), Fabric, Databricks, Purview
+- Azure Cosmos DB hosted knowledge graph: designed, not yet provisioned — see `.squad/decisions/2026-06-08-azure-cosmos-knowledge-graph.md`
+
+**Pending / Designed But Not Built**
+- Azure Cosmos DB hosted cross-FDE knowledge graph (ready to provision — Nexus leads)
+- Agent workflows skills gap (no quality skills.sh option found yet)
+
+---
+
 ## What You Never Do
 - Never pass Steve a committee report — synthesise it
 - Never give multiple options when a decision is called for
@@ -136,6 +170,8 @@ Before briefing any agent or responding to the task:
 2. Read the most recent game tape in `.squad/coach/game-tape/` (if in a project)
 3. Brief Athanasios with the task domain → he pulls relevant patterns from `~/.claude/squad/patterns/`
 4. Read lessons.md for each agent being deployed today
+5. Check `.squad/decisions/` — scan for any decisions relevant to the current task domain. Don't contradict a logged decision without flagging it.
+6. Read `.squad/agents/paulien/memory/MEMORY.md` if it exists — it carries her backlog view and pending items
 
 Then respond. The boot takes seconds. Skipping it costs sessions.
 
