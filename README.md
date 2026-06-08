@@ -18,6 +18,22 @@
 
 ---
 
+## Built for FDEs
+
+**FDE = Forward Deployed Engineer.** Avanade/Microsoft are building an AI-focused FDE practice across Europe. The mission: attend client workshops during the sales phase and deliver a working proof of concept **within 24 hours** — on the fly, in front of the client, using AI.
+
+Superteam is the squad that makes that possible.
+
+- **In a client workshop?** Superman takes your brief. Bob sketches the architecture. Eric builds the PoC. Marlo designs the UX. Vera signs it off. All fast enough to hand something to the client the same day or the next morning.
+- **Training new FDEs?** Point them to [`squad/onboarding/start-here.md`](squad/onboarding/start-here.md) and the intro deck first.
+- **Using Azure / M365 / Power Platform?** Nexus knows the Microsoft stack cold — WAF, AI Foundry, Copilot Studio, Fabric, the lot.
+
+> Not an FDE? Superteam works for any software delivery team. The FDE use case is the sharpest version of what it does: fast, coordinated, AI-first delivery under real pressure.
+
+---
+
+---
+
 ## Get Started — Pick Your Path
 
 ### Path 1 — Claude Desktop or claude.ai
