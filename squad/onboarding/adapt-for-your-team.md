@@ -18,7 +18,7 @@
 - `CLAUDE.md` — Steve's name, location, expertise, values, project context
 - `agents/superman.md` — "Steve" references in the opening and delivery gate
 - `squad/identity/PLAYBOOK.md` — "Steve's principles" section
-- `squad/onboarding/NEW_PROJECT.md` — tech stack defaults (React + Hono + SQLite → Azure SQL is Steve's stack)
+- `squad/onboarding/new-project-checklist.md` — tech stack defaults (React + Hono + SQLite → Azure SQL is Steve's stack)
 - `squad/skills/spatial-gis.md` and `graphdb.md` — Steve is the domain expert; replace with your domain expert
 - `.github/copilot-instructions.md` — Team Principles section (last two bullets are Steve's domain + values; replace with yours)
 
@@ -59,7 +59,7 @@ In `squad/identity/PLAYBOOK.md`, replace the "Steve's Principles" section with y
 
 ### 5. Update the Tech Stack Default
 
-In `squad/onboarding/NEW_PROJECT.md`, find the tech stack section and replace the defaults with yours. Steve's defaults:
+In `squad/onboarding/new-project-checklist.md`, find the tech stack section and replace the defaults with yours. Steve's defaults:
 - Frontend: React (Vite)
 - Backend: Hono on Node
 - DB: SQLite local, Azure SQL prod
@@ -78,7 +78,7 @@ A skill card is a single markdown file that tells the squad when to use a techno
 
 ### 7. Set Your Cost Context
 
-In `squad/onboarding/NEW_PROJECT.md`, update the cost context section to match your situation. Adjust the mode ceilings and alert thresholds to match your budget and client context.
+In `squad/onboarding/new-project-checklist.md`, update the cost context section to match your situation. Adjust the mode ceilings and alert thresholds to match your budget and client context.
 
 ### 8. Commit and Push
 
@@ -92,7 +92,7 @@ If you just want to get started fast, do only these three things:
 
 1. Replace `CLAUDE.md` user context block with your name and domain
 2. Update Superman's opening: change "Steve" to your name
-3. Update the tech stack defaults in `NEW_PROJECT.md`
+3. Update the tech stack defaults in `new-project-checklist.md`
 
 Everything else can evolve as you use the squad.
 

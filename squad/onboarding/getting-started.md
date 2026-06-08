@@ -28,7 +28,7 @@ If you use **Claude Desktop** (the app) or **claude.ai** (the browser), you can 
 ### Step 2 — Add the squad instructions
 
 1. Inside the project, click **Set project instructions** (or the settings/edit icon)
-2. Open this file: `squad/onboarding/claude-desktop-project-instructions.md`
+2. Open this file: `squad/onboarding/paste-into-claude.md`
 3. Copy everything **below the horizontal rule** (from "You are operating as part of Superteam..." to the end)
 4. Paste it into the Project Instructions field
 5. **Update the "Your Team Context" section** at the bottom — replace the placeholder text with your name, domain, stack, and values
@@ -128,7 +128,7 @@ For advice, research, code generation, architecture, plans, and documents — De
 
 Once you have the project set up and working, the cleanest way to share with other FDEs:
 
-1. Share the `squad/onboarding/claude-desktop-project-instructions.md` file from this repo
+1. Share the `squad/onboarding/paste-into-claude.md` file from this repo
 2. Tell them to follow this guide
 3. They each create their own Claude Project and paste the instructions
 4. Everyone gets the same squad — each in their own Claude workspace
@@ -137,4 +137,4 @@ Once you have the project set up and working, the cleanest way to share with oth
 
 ---
 
-*Maintained in `squad/onboarding/CLAUDE_DESKTOP.md`*
+*Maintained in `squad/onboarding/getting-started.md`*

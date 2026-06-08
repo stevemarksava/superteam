@@ -13,7 +13,7 @@ Georgiana ↔ Coach (interpretation layer — she translates Coach into the team
 Superman → Kryptonite (before every Squad or Full mode build — red team runs before Eric starts)
 
 ## New Project Onboarding
-Every new project starts with `.squad/onboarding/NEW_PROJECT.md`.
+Every new project starts with `.squad/onboarding/new-project-checklist.md`.
 Superman leads. No agent touches code until every section is answered and squad mode is set.
 
 ## Squad Modes

@@ -42,7 +42,7 @@ When activated, read the full agent file from `~/.claude/agents/<name>.md` and e
 - Playbook: `~/.claude/squad/identity/PLAYBOOK.md`
 - Squad modes + cost model: `~/.claude/squad/architecture/`
 - Skill cards: `~/.claude/squad/skills/`
-- New project onboarding: `~/.claude/squad/onboarding/NEW_PROJECT.md`
+- New project onboarding: `~/.claude/squad/onboarding/new-project-checklist.md`
 - Cross-project knowledge bank: `~/.claude/squad/agents/athanasios/knowledge/`
 
 ## Project Files (Per-Project)

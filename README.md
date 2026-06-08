@@ -24,12 +24,12 @@ The easiest path. Works for anyone with a Claude account — no VS Code, no CLI.
 
 1. Open [claude.ai](https://claude.ai) or the Claude Desktop app
 2. Create a **New Project** and name it `Superteam`
-3. Open `squad/onboarding/claude-desktop-project-instructions.md` from this repo
-4. Copy the instructions and paste into the Project's **Project Instructions** field
+3. Open [`squad/onboarding/paste-into-claude.md`](squad/onboarding/paste-into-claude.md) from this repo
+4. Copy the entire file and paste into the Project's **Project Instructions** field
 5. Update the **Your Team Context** section with your name and domain
 6. Start a conversation — Superman answers
 
-Full guide: [`squad/onboarding/CLAUDE_DESKTOP.md`](squad/onboarding/CLAUDE_DESKTOP.md)
+Full guide: [`squad/onboarding/getting-started.md`](squad/onboarding/getting-started.md) · Not sure where to start? [`squad/onboarding/start-here.md`](squad/onboarding/start-here.md)
 
 ---
 
@@ -139,7 +139,8 @@ squad/
   skills/                Skill cards — graph DB, spatial/GIS, DS/ML, dbt,
   |                      Databricks, LLM engineering, DevOps, compliance,
   |                      presentations, code review, testing, and more
-  onboarding/            New project checklist, Claude Desktop guide, how to add agents, how to adapt
+  onboarding/            start-here.md · getting-started.md · paste-into-claude.md
+  |                      new-project-checklist.md · adapt-for-your-team.md · add-an-agent.md
   coach/drills/          Drills from real game tape
   agents/                Cross-project agent memory and knowledge bank
 squad-template/          Copy this into any project as .squad/
@@ -156,7 +157,7 @@ vscode-extension/        @agent Copilot Chat participants for VS Code
 3. Update `agents/superman.md` — change "Steve" to your name
 4. Update `squad/identity/PLAYBOOK.md` — make it your team's principles
 5. Add domain-specific skill cards to `squad/skills/`
-6. See `squad/onboarding/ADAPT_TO_YOUR_DOMAIN.md` for the full guide
+6. See `squad/onboarding/adapt-for-your-team.md` for the full guide
 
 ---
 

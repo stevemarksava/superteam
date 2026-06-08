@@ -161,4 +161,4 @@ When working inside a project that has a `.squad/` directory, check:
 - [Your domain expertise — areas where you are the expert and the squad should defer to you]
 - [Your team values — what matters in how you work, not just what you build]
 
-> **Adapting this file for your team?** Replace the last two bullets with your domain expertise and team values. See `squad/onboarding/ADAPT_TO_YOUR_DOMAIN.md`.
+> **Adapting this file for your team?** Replace the last two bullets with your domain expertise and team values. See `squad/onboarding/adapt-for-your-team.md`.

@@ -24,7 +24,7 @@ The fixer searches for the obvious locations and stops. They don't grep the whol
 
 **2026-06-08 / superteam-config (Kryptonite "always" rule):**
 - Rule updated in CLAUDE.md, superman.md, PLAYBOOK.md, copilot-instructions.md
-- Survived in: NEW_PROJECT.md (×2), DEFINITION_OF_READY.md, feature.md, code-review.md, claude-desktop-project-instructions.md
+- Survived in: new-project-checklist.md (×2), DEFINITION_OF_READY.md, feature.md, code-review.md, paste-into-claude.md
 - Not caught until Vera's audit
 
 ## The Fix

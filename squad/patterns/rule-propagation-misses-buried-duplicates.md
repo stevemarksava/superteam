@@ -20,7 +20,7 @@ The eye finds the prominent statement of a rule and treats it as the only statem
 **2026-06-08 / superteam-config — three occurrences in one session:**
 1. `copilot-instructions.md` Non-Negotiables — "Kryptonite reviews (Squad and Full)" updated; checklist row missed
 2. Kryptonite qualifier propagation — headline files updated, 5 other files with "Squad or Full mode" missed (Vera's first full audit caught them)
-3. `NEW_PROJECT.md` section 8 and section 10 updated to "every mode"; section 3 checklist row line 60 still read "If Squad or Full mode" (Vera blocked, fix applied)
+3. `new-project-checklist.md` section 8 and section 10 updated to "every mode"; section 3 checklist row line 60 still read "If Squad or Full mode" (Vera blocked, fix applied)
 
 ## The Fix
 Before committing any rule change: grep the repo for the OLD phrasing.
@@ -36,7 +36,7 @@ If the grep returns hits in unexpected files: fix them in the same commit.
 
 ## Watch For
 - A checklist or table row that is a restatement of a headline rule
-- Rule changes in files with both a policy section and a checklist section (NEW_PROJECT.md, PLAYBOOK.md, DoR, DoD)
+- Rule changes in files with both a policy section and a checklist section (new-project-checklist.md, PLAYBOOK.md, DoR, DoD)
 - "Kryptonite" qualifier changes — these always have checklist echoes
 - Any file where the same concept appears in multiple forms (prose + checklist + table)
 

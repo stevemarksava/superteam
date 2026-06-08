@@ -219,7 +219,12 @@
       "Bash(npx skills *)",
       "Bash(npx @skills/cli --version)",
       "Bash(powershell -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\s.marks\\\\.claude\\\\tmp_symlink_check.ps1\")",
-      "Bash(powershell -Command \"Remove-Item 'C:\\\\Users\\\\s.marks\\\\.claude\\\\tmp_symlink_check.ps1' -Force; Get-ChildItem 'C:\\\\Users\\\\s.marks\\\\.agents\\\\skills\\\\find-skills' -Force | Select-Object Name, Attributes | Format-Table -AutoSize\")"
+      "Bash(powershell -Command \"Remove-Item 'C:\\\\Users\\\\s.marks\\\\.claude\\\\tmp_symlink_check.ps1' -Force; Get-ChildItem 'C:\\\\Users\\\\s.marks\\\\.agents\\\\skills\\\\find-skills' -Force | Select-Object Name, Attributes | Format-Table -AutoSize\")",
+      "Bash(rm -rf docx pptx xlsx frontend-design skill-creator webapp-testing vercel-react-best-practices web-design-guidelines vercel-composition-patterns vercel-react-native-skills nextjs-app-router-patterns)",
+      "Read(//c/c/Users/s.marks/.claude/**)",
+      "Bash(sed -i 's|squad/onboarding/NEW_PROJECT\\\\.md|squad/onboarding/new-project-checklist.md|g; s|`NEW_PROJECT\\\\.md`|`new-project-checklist.md`|g' squad/onboarding/adapt-for-your-team.md)",
+      "Bash(sed -i 's|squad/onboarding/claude-desktop-project-instructions\\\\.md|squad/onboarding/paste-into-claude.md|g; s|squad/onboarding/CLAUDE_DESKTOP\\\\.md|squad/onboarding/getting-started.md|g' squad/onboarding/getting-started.md)",
+      "Bash(cd \"/c/Users/s.marks/.claude\" && sed -i 's|squad/onboarding/claude-desktop-project-instructions\\\\.md|squad/onboarding/paste-into-claude.md|g' squad/onboarding/superteam-intro.html && echo \"done\")"
     ],
     "defaultMode": "bypassPermissions",
     "additionalDirectories": [
@@ -229,7 +234,8 @@
       "C:\\Users\\s.marks\\Documents\\GitHub\\FDE_PoC-on-the-Fly_Tooling\\.claude\\skills",
       "C:\\Users\\s.marks\\.claude\\squad\\agents\\athanasios\\knowledge\\recon",
       "C:\\Users\\s.marks\\.claude\\.git",
-      "C:\\Users\\s.marks\\.claude\\.squad\\coach"
+      "C:\\Users\\s.marks\\.claude\\.squad\\coach",
+      "c:\\c\\Users\\s.marks\\.claude\\squad\\onboarding"
     ]
   },
   "effortLevel": "high",

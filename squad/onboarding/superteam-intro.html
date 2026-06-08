@@ -384,11 +384,73 @@
       color: var(--fg);
       line-height: 1.2;
     }
+    .agent-card .agent-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+    }
+    .agent-card .agent-badge span {
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+    }
     .agent-card .agent-role {
       font-size: clamp(0.6rem, 0.85vw, 0.72rem);
       font-weight: 400;
       color: var(--fg-muted);
       line-height: 1.4;
+    }
+    .agent-card .agent-why {
+      margin-top: 0.8rem;
+      font-size: 0.8rem;
+      line-height: 1.45;
+      color: var(--fg-muted);
+      min-height: 3.8rem;
+    }
+
+    .coach-highlight {
+      margin-top: 1.75rem;
+      padding: 1.35rem 1.3rem;
+      background: linear-gradient(135deg, rgba(255,156,54,0.08), rgba(255,255,255,0.03));
+      border: 1px solid rgba(245,158,11,0.18);
+      border-radius: 14px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-items: center;
+    }
+    .coach-highlight .coach-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 700;
+      color: var(--accent-warn);
+      margin-bottom: 0.6rem;
+    }
+    .coach-highlight .coach-title {
+      font-size: clamp(1rem, 1.3vw, 1.2rem);
+      font-weight: 800;
+      color: var(--fg);
+      margin-bottom: 0.5rem;
+    }
+    .coach-highlight .coach-copy {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: var(--fg-muted);
+      max-width: 44rem;
+    }
+    .coach-highlight .coach-callout {
+      font-size: 1.75rem;
+      font-weight: 900;
+      color: var(--accent-warn);
+      text-align: center;
+      min-width: 4rem;
     }
 
     /* superman — make it span or stand out */
@@ -894,70 +956,108 @@
     <div class="slide-header">
       <div class="label">The roster</div>
       <h2>Meet the Squad</h2>
+      <p class="punchline" style="margin-top:1rem; max-width:64rem; color:var(--fg-muted); font-size:0.95rem; line-height:1.7;">
+        Superteam is a coordinated crew of specialists. Each agent has a focused role, a label that tells you what they do best, and a clear reason for being on the team.
+      </p>
     </div>
 
     <div class="agent-grid">
 
       <div class="agent-card blue superman-card">
         <div class="agent-name">Superman</div>
-        <div class="agent-role">Lead &middot; your one voice in</div>
+        <div class="agent-badge"><span></span>Lead</div>
+        <div class="agent-role">Your single point of contact and squad conductor.</div>
+        <div class="agent-why">Keeps everyone aligned, chooses the right specialist, and ensures the answer is coordinated.</div>
       </div>
 
       <div class="agent-card indigo">
         <div class="agent-name">Bob</div>
-        <div class="agent-role">Architect &middot; blueprints before builds</div>
+        <div class="agent-badge"><span></span>Architect</div>
+        <div class="agent-role">Blueprinter before the build begins.</div>
+        <div class="agent-why">Designs system structure, integration, and data flow so implementation is clean and scalable.</div>
       </div>
 
       <div class="agent-card green">
         <div class="agent-name">Eric</div>
-        <div class="agent-role">Coder &middot; elite, pragmatic, clean</div>
+        <div class="agent-badge"><span></span>Coder</div>
+        <div class="agent-role">Builds what moves and keeps it practical.</div>
+        <div class="agent-why">Writes the code, refactors the logic, and makes sure working software is the outcome.</div>
       </div>
 
       <div class="agent-card sky">
         <div class="agent-name">Marlo</div>
-        <div class="agent-role">UX &middot; designs for real humans</div>
+        <div class="agent-badge"><span></span>UX</div>
+        <div class="agent-role">Designs interfaces and flows for humans.</div>
+        <div class="agent-why">Ensures solutions are usable, accessible, and aligned with real user behavior.</div>
       </div>
 
       <div class="agent-card purple">
         <div class="agent-name">Paulien</div>
-        <div class="agent-role">Planner &middot; order out of chaos</div>
+        <div class="agent-badge"><span></span>Planner</div>
+        <div class="agent-role">Turns chaos into a delivery plan.</div>
+        <div class="agent-why">Breaks work into steps, defines done criteria, and keeps the squad moving on the right priorities.</div>
       </div>
 
       <div class="agent-card amber">
         <div class="agent-name">Vera</div>
-        <div class="agent-role">Quality &middot; nothing ships without her</div>
+        <div class="agent-badge"><span></span>Quality</div>
+        <div class="agent-role">The gatekeeper for every delivery.</div>
+        <div class="agent-why">Checks tests, edge cases, correctness, and prevents risky work from shipping.</div>
       </div>
 
       <div class="agent-card teal">
         <div class="agent-name">Athanasios</div>
-        <div class="agent-role">Research &middot; finds what others miss</div>
+        <div class="agent-badge"><span></span>Research</div>
+        <div class="agent-role">Finds the hidden answers.</div>
+        <div class="agent-why">Digs into requirements, competitors, and tradeoffs so the squad avoids repeated mistakes.</div>
       </div>
 
       <div class="agent-card red">
         <div class="agent-name">Kryptonite</div>
-        <div class="agent-role">Red team &middot; attacks plans before builds</div>
+        <div class="agent-badge"><span></span>Red team</div>
+        <div class="agent-role">Challenges assumptions before you build.</div>
+        <div class="agent-why">Surfaces flaws, risks, and blind spots so plans are stronger before execution.</div>
       </div>
 
       <div class="agent-card indigo">
         <div class="agent-name">Kevin</div>
-        <div class="agent-role">Reports &middot; stakeholder-ready output</div>
+        <div class="agent-badge"><span></span>Reports</div>
+        <div class="agent-role">Turns work into stakeholder-ready summaries.</div>
+        <div class="agent-why">Creates clear status, rationale, and decision records for sponsors and teams.</div>
       </div>
 
       <div class="agent-card amber">
         <div class="agent-name">G</div>
-        <div class="agent-role">Finance &middot; costs, pricing, economics</div>
+        <div class="agent-badge"><span></span>Finance</div>
+        <div class="agent-role">Keeps economics visible.</div>
+        <div class="agent-why">Evaluates cost, value, pricing, and whether the solution makes sense financially.</div>
       </div>
 
       <div class="agent-card green">
         <div class="agent-name">Coach</div>
-        <div class="agent-role">Performance &middot; team improves every sprint</div>
+        <div class="agent-badge"><span></span>Performance</div>
+        <div class="agent-role">Tracks team health and process habits.</div>
+        <div class="agent-why">After every delivery, Coach checks whether the squad learned the right lesson and whether the next session can be smoother.</div>
       </div>
 
       <div class="agent-card blue">
         <div class="agent-name">Nexus</div>
-        <div class="agent-role">Microsoft &middot; Azure, Fabric, Power Platform</div>
+        <div class="agent-badge"><span></span>Microsoft</div>
+        <div class="agent-role">Azure, Fabric, Power Platform expertise.</div>
+        <div class="agent-why">Recommends the right Microsoft platform patterns and avoids bad cloud/platform choices.</div>
       </div>
 
+    </div>
+
+    <div class="coach-highlight">
+      <div>
+        <div class="coach-label">Why Coach matters</div>
+        <div class="coach-title">Coach is the squad’s process guardian.</div>
+        <div class="coach-copy">
+          Coach does not build features. Coach watches how the squad works. After every delivery, Coach names what improved, what slowed us down, and what habits should change. Coach makes sure the team learns faster and avoids repeated mistakes.
+        </div>
+      </div>
+      <div class="coach-callout">Learn</div>
     </div>
   </section>
 
@@ -1124,7 +1224,7 @@
             <div class="step-num">3</div>
             <div class="step-text">
               Find the instructions file:<br>
-              <span class="file-path">squad/onboarding/claude-desktop-project-instructions.md</span>
+              <span class="file-path">squad/onboarding/paste-into-claude.md</span>
             </div>
           </div>
           <div class="step-row">
