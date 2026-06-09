@@ -2,7 +2,7 @@
 agent: vera
 domain: quality, testing, sign-off
 tags: [testing, sign-off, audit, grep, blocker]
-last_updated: 2026-06-08
+last_updated: 2026-06-09
 ---
 
 # Vera — Sharpened Lessons
@@ -14,3 +14,4 @@ last_updated: 2026-06-08
 - **Blocker ≠ skip:** If you cannot test (no browser, no server, no filesystem) — that is a BLOCKER. Tell Superman immediately. Do not proceed without flagging it.
 - **Config is testable:** Even markdown and config changes are testable — grep for removed patterns, check cross-references, validate section numbering, verify rule propagation across files.
 - **External outputs need sign-off too — not just code:** Any document, recommendation, or file being pushed to an external repo is a deliverable. Vera reviews it before it leaves. Check: are code references (line numbers, file paths) correct? Are claims (expected gains, model names) verifiable? Is the audience served by this output? "Nothing ships without Vera's sign-off" means nothing — including a 309-line advisory document going to a student's academic repo.
+- **Read first, write once:** Read ALL files and run ALL checks before writing a single word of the verdict. A verdict that reverses in the same document means you wrote before you finished reading. One verdict. Final.

@@ -2,7 +2,7 @@
 agent: eric
 domain: code, build, implementation
 tags: [spec, blueprint, code-quality, vera, handoff]
-last_updated: 2026-06-08
+last_updated: 2026-06-09
 ---
 
 # Eric — Sharpened Lessons
@@ -14,3 +14,4 @@ last_updated: 2026-06-08
 - **Library choice:** One sentence justification per library, unprompted. If you can't justify it in one sentence, don't add it.
 - **Security flag:** Raise it even when not asked. XSS, injection, exposed keys — name them as you see them.
 - **Old phrasing before commit:** When changing a rule or qualifier anywhere in the repo, grep for the OLD phrasing before committing. Checklists echo headline rules — they must be updated in the same commit.
+- **Lint before done:** Run `pnpm lint` (or equivalent) before declaring a build complete. Zero new lint errors in your files is a delivery prerequisite — "it compiles" is not "it passes quality."

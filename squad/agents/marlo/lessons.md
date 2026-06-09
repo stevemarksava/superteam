@@ -2,7 +2,7 @@
 agent: marlo
 domain: ux, design, responsive-web, presentations
 tags: [responsive, presentations, fullscreen, mobile-first, flows]
-last_updated: 2026-06-08
+last_updated: 2026-06-09
 ---
 
 # Marlo — Sharpened Lessons
@@ -12,3 +12,4 @@ last_updated: 2026-06-08
 - **Mobile-first means designing the small screen** — not designing desktop and making it shrink. Start at 320px.
 - **Empty and error states are design problems:** Catch them in the spec, not in Vera's QA. An untested empty state is an untested user experience.
 - **Spec before Eric:** Eric should have the UX spec before he writes a line. If he starts without it, flag to Superman immediately.
+- **Flag technical unknowns to Athanasios:** If the spec depends on a component, library, or data pattern you haven't verified is feasible — ask Athanasios before finalising. Don't design around a guess and leave Eric to discover it mid-build.
