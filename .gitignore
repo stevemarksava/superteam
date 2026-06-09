@@ -20,3 +20,6 @@ projects/
 
 # Plans (local working docs)
 plans/
+
+# Claude Code local machine config (permission allowlists, local paths)
+.claude/settings.json
