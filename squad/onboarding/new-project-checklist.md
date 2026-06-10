@@ -24,6 +24,7 @@ Before mode selection, Superman classifies the **session type**. This determines
 ## 1. The Vision
 
 **Ask the project owner:**
+- What is the preferred communication language for this project? *(e.g. English, Dutch, French)* All squad responses and deliverables will be in this language for the remainder of the project.
 - What are we building and for whom?
 - What does success look like in one sentence?
 - What does failure look like — what must never happen?
@@ -185,6 +186,7 @@ Before any blueprint, plan, or line of code — Athanasios runs a recon pass on 
 
 Before any agent starts work, Superman confirms:
 
+- [ ] Communication language confirmed — all agents respond in that language from this point forward
 - [ ] Vision answered — one-sentence success and failure defined
 - [ ] Squad mode set and token budget confirmed
 - [ ] Tech stack confirmed — no unknowns
@@ -210,4 +212,4 @@ After onboarding, Superman writes to `.squad/agents/superman/memory/MEMORY.md`:
 
 ---
 
-*Template owner: Paulien · Last updated: 2026-06-05*
+*Template owner: Paulien · Last updated: 2026-06-10*

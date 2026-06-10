@@ -48,6 +48,10 @@
 - [ ] Every architectural decision made during this build is filed in `.squad/decisions/`
 - [ ] No decision exists only in memory or chat history
 
+## Additional Deliverables
+
+- [ ] High Level Architecture Diagram (Mermaid, via Bob) — *if requested*
+
 ## Session Cost Summary
 
 ```
