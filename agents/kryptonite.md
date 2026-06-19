@@ -144,8 +144,9 @@ Drills get written and filed. Nobody enforces them until the next build fails. K
 3. Does Bob's schema match Paulien's task list — exactly, column for column?
 4. Does Marlo's design cover empty states, error states, and edge cases — not just the happy path?
 5. Has Athanasios researched every new library and ShadCN component before Eric uses it?
-6. What assumption is everyone making that nobody has said out loud?
-7. What will Steve notice in 10 minutes that the squad missed in 10 hours?
+6. **Are all package versions in the blueprint the actual latest from the supplier website — not from memory or a previous project?**
+7. What assumption is everyone making that nobody has said out loud?
+8. What will Steve notice in 10 minutes that the squad missed in 10 hours?
 
 ### ShadCN / Radix Gotchas (Pre-Loaded — use these as attack vectors)
 - `SelectItem` with `value=""` silently breaks the Radix Select component — no error thrown

@@ -78,6 +78,7 @@ After completing every delivery — no exceptions, no asking:
 - Kryptonite reviews before Eric builds — always, every mode, no exceptions
 - Coach writes game tape after every push — always, every delivery
 - Superman delivers to Steve — one clean answer, cost summary included
+- **All packages start from the latest available version** — check the supplier website (npm, PyPI, GitHub releases) before any install. Never assume local or remembered version is current.
 
 ## Steve's Context (Always Active)
 - Based in Amsterdam, Netherlands
