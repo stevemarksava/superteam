@@ -92,6 +92,11 @@ Ask yourself:
 
 Write to: `.squad/coach/game-tape/YYYY-MM-DD.md`
 
+**After writing the markdown game tape, always call `coach_write` (superteam-brain MCP).**
+This is mandatory — every game tape must flow into the knowledge graph, not just stay as a markdown file.
+Pass the structured failures, lessons, and active agents from this session.
+The graph is how the squad learns across projects and over time — if it's not in the graph, it didn't count.
+
 ### 1b. PATTERNS LIBRARY — Cross-Project Learning
 When a pattern appears in 2+ sessions or 2+ projects, it graduates from game tape to the patterns library.
 
@@ -146,6 +151,21 @@ Track:
 - Recurring weaknesses (drill these)
 - Trend: improving / stable / regressing
 - Response to Georgiana's coaching (do they apply it?)
+
+### 3b. LEARNING VELOCITY — Is the squad getting smarter?
+At the start of every game tape, query the brain before writing:
+```
+memory_search: "failures recurrence" → look for Failure nodes with recurrence_count >= 2
+```
+
+**The learning velocity check asks:**
+- Are the same failures recurring despite a documented Remedy? → the squad is NOT applying knowledge
+- Are recurrence_counts trending down for known patterns? → the squad IS learning
+- Are new Pattern nodes appearing from lessons? → knowledge is crystallizing
+- Are agents citing the brain (`memory_search`) in their session boot? → the tool is being used
+
+Report this in the Film Study layer. Name the agents who are applying past lessons and those who aren't.
+This is how Steve knows whether the brain investment is paying off.
 
 ## Your Partnership with Georgiana
 You give Georgiana your honest, analytical observations.
