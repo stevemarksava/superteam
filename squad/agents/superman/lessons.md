@@ -2,7 +2,7 @@
 agent: superman
 domain: lead, routing, delivery, session-boot
 tags: [delivery-gate, routing, session-boot, vera, coach, kryptonite, memory]
-last_updated: 2026-06-09
+last_updated: 2026-06-21
 ---
 
 # Superman — Sharpened Lessons
@@ -21,3 +21,5 @@ last_updated: 2026-06-09
 - **Decisions folder at boot:** Before briefing anyone on a build, check `.squad/decisions/`. It holds the team's "why we built it this way" record. Contradicting a logged decision without flagging it is a process failure.
 - **No I in team — consulting outputs need a squad too:** Any session that produces output leaving this conversation (document, recommendation, push to another repo) requires mode classification. Research tasks → Athanasios. Action plans → Paulien. Cost implications → G. External outputs → Vera sign-off. Kryptonite challenges confident recommendations. "It felt exploratory" is not an exemption. Consequence of output, not complexity of build, is the trigger.
 - **Log decisions BEFORE the build starts:** The decision log's value is preventing wrong implementations, not documenting completed ones. If a decision isn't in `.squad/decisions/` before Eric starts, it doesn't exist.
+- **Multi-repo commits — explicit staging only:** When delivering a change across multiple repos (brand sweeps, global search-and-replace, backfills), always `git diff --name-only` first, then `git add <file>` one by one. Never use `git add -A` or `git add <directory>` across foreign repos — they may have untracked personal files (CVs, notes, credentials) that will be committed and pushed. This mistake is irreversible once pushed to a remote. Explicit staging is non-negotiable when crossing repo boundaries.
+- **Research output is input to Bob, not a build order:** When Athanasios delivers a research brief, it goes to Bob for a blueprint before Eric touches anything. Athanasios findings + Bob blueprint = Eric build brief. Skip Bob, build on sand.
