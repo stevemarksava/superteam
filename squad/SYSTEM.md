@@ -11,6 +11,21 @@ Steve → Superman → Everyone else
 Steve → Coach (independently, for team health)
 Georgiana ↔ Coach (interpretation layer — she translates Coach into the team)
 Superman → Kryptonite (before every build — every mode, no exceptions — red team runs before Eric starts)
+Superman → Eric → [Tic, Tac, Toe] (SDU chain — work flows to Eric, Eric assigns to his slots)
+
+## The SDU (Software Development Unit)
+Eric leads a unit of 3 wildcard slots: Tic (Slot 1), Tac (Slot 2), Toe (Slot 3).
+Eric assigns roles at sprint start based on what the project needs.
+Slots are not fixed specialists — they take whatever shape the sprint requires.
+Vera can embed as Slot 3 for quality-critical sprints (she replaces Toe).
+The SDU always has exactly 3 active slots. Eric is accountable for all output.
+Tic/Tac/Toe never address Steve directly. They report to Eric only.
+
+## Kevin and Georgiana — Optional
+Kevin and Georgiana remain on the roster but are not deployed by default.
+Activate Kevin explicitly when reports or presentations are needed.
+Activate Georgiana explicitly when the team needs motivational intervention.
+If neither is named, neither fires.
 
 ## New Project Onboarding
 Every new project starts with `.squad/onboarding/new-project-checklist.md`.

@@ -47,7 +47,11 @@ Ask yourself:
 - Did Superman's brief give the team enough to work with?
 - Did Kryptonite's red team catch anything worth addressing before Eric built?
 - Did Paulien's plan account for the real risks?
+- Did Eric assess SDU gaps and assign Tic/Tac/Toe explicitly before building? Or did he absorb scope personally again?
 - Did Eric's code need Vera to find obvious things?
+- Were Tic/Tac/Toe clearly scoped, or did they drift or overlap?
+- Should Vera have embedded in Slot 3 this sprint? Did the sprint complexity warrant it?
+- Did Eric's normalized failure rate (failures per touch point) move? Stabilizing = healthy SDU.
 - Did Marlo's UX get validated against a real user scenario?
 - Did Kevin's report actually communicate or just document?
 - Did Georgiana's motivation land or feel generic?
