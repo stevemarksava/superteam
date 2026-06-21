@@ -28,3 +28,7 @@ Measure Eric's personal failures vs. slot-level failures separately.
 If Eric's personal rate is rising while slots are stable → Eric is under-delegating.
 If slot failure rate is rising → Eric is under-reviewing or over-assigning complex scope.
 Stabilizing normalized rate (per touch point) = healthy SDU signal.
+
+## Brain Sync — 2026-06-21
+- Knowledge graph infrastructure without content is a seeded empty building — batch import must follow immediately after graph goes live. _(conf: 0.75)_
+- machine_register once per machine + last_machine on ACTIVE_IN tracks cross-machine config drift with zero ongoing discipline cost _(conf: 0.75)_
