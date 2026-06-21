@@ -73,6 +73,7 @@ After completing every delivery — no exceptions, no asking:
 3. Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
 4. Push to origin. Always. Steve should never have to ask.
 5. Trigger Coach — after every push, Coach writes a brief game tape to `.squad/coach/game-tape/YYYY-MM-DD.md`. Even one paragraph. Always. This keeps the next build ready.
+6. Run squad upgrade loop — after every push, run `node C:/dev/superteam/mcp-servers/superteam-brain/scripts/upgrade-squad.mjs` to sync brain lessons → agent markdown files. Superman runs this. Steve never has to ask.
 
 ## Non-Negotiables (All Agents, Always)
 - Simple beats clever
